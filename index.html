@@ -1,300 +1,1948 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>263 Hit Radio - Zimbabwe's #1 Hit Music Station</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>263 Hit Radio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-    </style>
+        :root {
+            --primary: #E31937;
+            --secondary: #1E88E5;
+            --dark: #111;
+            --darker: #0a0a14;
+            --light: #fff;
+            --glass: rgba(20, 20, 40, 0.65);
+            --glass-light: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: radial-gradient(circle at top left, #0f0c29 0%, #302b63 30%, #24243e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+    
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center,
+                    rgba(227, 25, 55, 0.15) 0%,
+                    rgba(30, 136, 229, 0.15) 50%,
+                    rgba(0, 0, 0, 0.9) 100%);
+            z-index: -1;
+        }
+    
+        /* Glass Background Effect */
+        .glass-bg {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+    
+        /* Combined Header with Navigation */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(17, 17, 34, 0.85);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, var(--primary), var(--secondary)) 1;
+            transition: transform 0.4s ease;
+        }
+    
+        .hide-header {
+            transform: translateY(-100%);
+        }
+    
+        #live-header {
+            padding: 15px 30px;
+        }
+    
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+    
+        .logo-container {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+    
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(227, 25, 55, 0.7));
+        }
+    
+        .dj-player-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            min-width: 300px;
+        }
+    
+        .dj-image {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(145deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(227, 25, 55, 0.5), 0 0 25px rgba(30, 136, 229, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            position: relative;
+            animation: pulseGlow 3s infinite alternate;
+        }
+    
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 25px rgba(227, 25, 55, 0.5), 0 0 25px rgba(30, 136, 229, 0.5);
+            }
+    
+            100% {
+                box-shadow: 0 0 40px rgba(227, 25, 55, 0.8), 0 0 40px rgba(30, 136, 229, 0.8);
+            }
+        }
+    
+        .dj-image img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+    
+        .radio-info {
+            text-align: center;
+        }
+    
+        .station-name {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+    
+        .now-playing {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+        }
+    
+        #track-title {
+            color: #ffcc00;
+            font-weight: bold;
+            font-style: italic;
+        }
+    
+        #listenBtn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 14px 40px;
+            font-weight: bold;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(227, 25, 55, 0.4);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+    
+        #listenBtn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(227, 25, 55, 0.6);
+        }
+    
+        #listenBtn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.8s;
+        }
+    
+        #listenBtn:hover::before {
+            left: 100%;
+        }
+    
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            width: 100%;
+        }
+    
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 200px;
+        }
+    
+        .volume-control i {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+    
+        .volume-control input {
+            width: 100%;
+            accent-color: var(--secondary);
+            height: 6px;
+            border-radius: 10px;
+        }
+    
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(17, 17, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+        }
+    
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+    
+        nav a:hover::before {
+            left: 100%;
+        }
+    
+        nav a:hover,
+        nav a.active {
+            color: var(--light);
+            background: rgba(30, 136, 229, 0.2);
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px rgba(30, 136, 229, 0.4);
+        }
+    
+        nav a:nth-child(2):hover,
+        nav a:nth-child(2).active {
+            background: rgba(227, 25, 55, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(227, 25, 55, 0.4);
+        }
+    
+        /* Page Content */
+        #content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+    
+        .page-section {
+            display: none;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+    
+        .page-section.active {
+            display: block;
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+    
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        /* Common Section Styles */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+    
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+    
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s;
+        }
+    
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(227, 25, 55, 0.25), 0 15px 40px rgba(30, 136, 229, 0.25);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+    
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 60px 30px;
+            margin-bottom: 50px;
+        }
+    
+        .hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+    
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+    
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+    
+        .block {
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s;
+            position: relative;
+            height: 100%;
+        }
+    
+        .block:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(227, 25, 55, 0.25), 0 15px 35px rgba(30, 136, 229, 0.25);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+    
+        .block::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0.8;
+        }
+    
+        .block img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+    
+        .block-content {
+            padding: 25px;
+        }
+    
+        .block h3 {
+            margin: 0 0 15px;
+            color: var(--light);
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+    
+        .block p {
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+    
+        .cta {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(227, 25, 55, 0.4);
+        }
+    
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+    
+        .cta:hover::before {
+            left: 100%;
+        }
+    
+        /* Events Page */
+        .event-promo {
+            margin-bottom: 50px;
+        }
+    
+        .event-banner {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 450px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+    
+        .event-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        .event-details {
+            padding: 30px;
+            background: var(--glass);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+    
+        .event-details h2 {
+            color: var(--light);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+    
+        .event-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+    
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px 25px;
+            background: var(--glass);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+    
+        .month-nav {
+            display: flex;
+            gap: 15px;
+        }
+    
+        .month-nav button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+    
+        .month-nav button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(227, 25, 55, 0.4);
+        }
+    
+        .calendar-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 8px;
+            background: transparent;
+        }
+    
+        .calendar-table th {
+            background: rgba(30, 136, 229, 0.3);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 12px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+    
+        .calendar-table td {
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            vertical-align: top;
+            height: 130px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(20, 20, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    
+        .calendar-table td:hover {
+            background: rgba(30, 136, 229, 0.2);
+            transform: translateY(-5px);
+        }
+    
+        .calendar-table td.has-event:hover {
+            background: rgba(227, 25, 55, 0.2);
+        }
+    
+        .day-number {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ddd;
+        }
+    
+        .event-count {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: var(--primary);
+            color: var(--light);
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    
+        /* Contact Page */
+        .dj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+    
+        .dj-card {
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s;
+            position: relative;
+        }
+    
+        .dj-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(227, 25, 55, 0.25), 0 15px 35px rgba(30, 136, 229, 0.25);
+        }
+    
+        .dj-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+    
+        .dj-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+    
+        .dj-card h3 {
+            margin: 20px 0 5px;
+            color: var(--light);
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+    
+        .dj-card p {
+            color: #ddd;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+    
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+    
+        .contact-card {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 35px 30px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(227, 25, 55, 0.25), 0 15px 35px rgba(30, 136, 229, 0.25);
+        }
+    
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+    
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    
+        .contact-card h3 {
+            margin-bottom: 20px;
+            color: var(--light);
+            font-size: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+    
+        .contact-card p {
+            color: #ddd;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+    
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+    
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(227, 25, 55, 0.4);
+        }
+    
+        /* Footer */
+        footer {
+            background: rgba(11, 11, 22, 0.9);
+            text-align: center;
+            padding: 50px 30px 30px;
+            margin-top: 80px;
+            border-top: 3px solid;
+            border-image: linear-gradient(90deg, var(--primary), var(--secondary)) 1;
+            backdrop-filter: blur(10px);
+        }
+    
+        footer p {
+            margin: 0 0 20px;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+    
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+    
+        .socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--primary), var(--secondary));
+            color: var(--light);
+            font-size: 1.8rem;
+            transition: all 0.4s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    
+        .socials a:hover {
+            transform: translateY(-8px) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(227, 25, 55, 0.5), 0 10px 25px rgba(30, 136, 229, 0.5);
+        }
+    
+        /* Player notification */
+        .player-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            font-weight: 600;
+            animation: slideIn 0.5s ease-out;
+        }
+    
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+    
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    
+        /* Responsive design */
+        @media (max-width: 1100px) {
+            .header-container {
+                gap: 20px;
+            }
+    
+            .station-name {
+                font-size: 1.8rem;
+            }
+    
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    
+        @media (max-width: 900px) {
+            .header-container {
+                flex-direction: column;
+            }
+    
+            .logo-container {
+                flex: 0 0 auto;
+            }
+    
+            nav {
+                padding: 12px;
+            }
+    
+            nav a {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+    
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+    
+            .event-banner {
+                height: 350px;
+            }
+        }
+    
+        @media (max-width: 600px) {
+            nav {
+                flex-wrap: wrap;
+            }
+    
+            nav a {
+                flex: 1 0 120px;
+                padding: 10px 15px;
+                font-size: 0.75rem;
+            }
+    
+            .dj-player-section {
+                min-width: 100%;
+            }
+    
+            #listenBtn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+    
+            .hero {
+                padding: 40px 20px;
+            }
+    
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+    
+            .hero p {
+                font-size: 1.1rem;
+            }
+    
+            .section-title {
+                font-size: 1.8rem;
+            }
+    
+            .event-banner {
+                height: 250px;
+            }
+    
+            .calendar-table td {
+                height: 100px;
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+    
+            .socials a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+        .event-form {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--glass); /* uses rgba white with low opacity */
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Slight lift on hover/focus within */
+.event-form:hover,
+.event-form:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(30, 144, 255, 0.2);
+    border-color: var(--primary-blue);
+}
+
+/* Form sections/titles */
+.event-form h2,
+.event-form .section-heading {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    /* gradient text */
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+.event-form .subheading {
+    font-size: 1.2rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: var(--light);
+    position: relative;
+}
+.event-form .subheading::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-blue);
+    border-radius: 3px;
+}
+
+/* Common label styling */
+.event-form label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--light);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Input, select, textarea */
+.event-form input[type="text"],
+.event-form input[type="email"],
+.event-form input[type="tel"],
+.event-form input[type="date"],
+.event-form input[type="time"],
+.event-form input[type="number"],
+.event-form select,
+.event-form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--primary-blue);
+    border-radius: 8px;
+    color: var(--light);
+    font-size: 1rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Placeholder color */
+.event-form input::placeholder,
+.event-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* On focus: glow & accent border */
+.event-form input:focus,
+.event-form select:focus,
+.event-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 8px rgba(227, 25, 55, 0.6);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Date inputs: ensure 24-hour clock for time fields (HTML input type=time uses locale) */
+/* If using custom time dropdowns, you can style similarly. */
+
+/* Checkbox consent */
+.event-form .consent-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.event-form .consent-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: var(--primary-blue);
+    cursor: pointer;
+}
+.event-form .consent-container label {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--light);
+    cursor: pointer;
+}
+
+/* Submit button */
+.event-form .submit-event-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    color: var(--light);
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.event-form .submit-event-btn:hover {
+    background: var(--gradient-hover);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(227, 25, 55, 0.5);
+}
+.event-form .submit-event-btn::before {
+    content: "📨";
+    margin-right: 8px;
+    display: inline-block;
+    animation: iconBounce 2s infinite;
+}
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Notes & Disclaimer boxes */
+.event-form .notes,
+.event-form .disclaimer {
+    margin-top: 30px;
+    padding: 15px 20px;
+    background: rgba(30, 30, 80, 0.4);
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 8px;
+    color: var(--light);
+    font-size: 0. nine rem; /* slight smaller */
+    line-height: 1.4;
+}
+.event-form .notes p,
+.event-form .disclaimer p {
+    margin-bottom: 8px;
+}
+.event-form .notes p:last-child,
+.event-form .disclaimer p:last-child {
+    margin-bottom: 0;
+}
+.event-form .notes .emoji,
+.event-form .disclaimer .emoji {
+    margin-right: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+    .event-form {
+        padding: 20px;
+        margin: 20px;
+    }
+    .event-form h2,
+    .event-form .section-heading {
+        font-size: 1.5rem;
+    }
+}
+        </style>
 </head>
 
 <body>
-    <div class="live-wrapper">
-        <!-- Box 1: Player -->
-        <a href="https://mytuner-radio.com/radio/263-hit-radio-507829/" target="_blank" style="text-decoration: none; color: inherit; flex: 1;">
-            <div class="box" style="cursor: pointer;">
-                <div class="live-header">
-                    <h2>263 HIT RADIO</h2>
+    <!-- Header with Player -->
+    <header id="live-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="images/logo.png"
+                    alt="One Love Radio Logo">
+            </div>
+
+            <div class="dj-player-section">
+                <div class="dj-image">
+                <img id="daily-dj-image" src="images/dj3.jpg" alt="DJ of the Day">
                 </div>
-                <p>Now Playing: <span id="track-title" style="font-weight: bold;">Zimbabwe's Hottest Hits</span></p>
-                <div class="audio-controls">
-                    <div class="visualizer">
-                        <span></span><span></span><span></span><span></span><span></span>
+
+                <div class="radio-info">
+                    <div class="station-name">ONE LOVE RADIO</div>
+                    <div class="now-playing">Now Playing: <span id="track-title">Zimbabwe's Hottest Hits</span></div>
+                    <button id="listenBtn">
+                        <i class="fas fa-play"></i> LISTEN LIVE NOW
+                    </button>
+                </div>
+
+                <div class="player-controls">
+                    <div class="volume-control">
+                        <i class="fas fa-volume-down"></i>
+                        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.7">
+                        <i class="fas fa-volume-up"></i>
                     </div>
                 </div>
-                <p>🔥 24/7 Hit Music - The Sound of Zimbabwe!</p>
+                <audio id="radioPlayer" src="https://altair.streamerr.co/8180/stream" preload="none"></audio>
             </div>
-        </a>
-    
-        <!-- Box 2: DJ Info -->
-        <div class="box" style="flex: 1;">
-            <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 5px; margin-bottom: 15px; background: #0A1F44;">
-                <img src="images/dj1.jpg" alt="DJ Jamza" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <h3 style="margin: 0 0 10px; color: #E31937;">🎙️ ON AIR NOW: DJ JAMZA</h3>
-            <p style="margin: 0 0 15px;">Playing Zimbabwe's freshest hits every Monday & Saturday from 6PM to 9PM CAT</p>
-            <a href="https://mytuner-radio.com/radio/263-hit-radio-507829/" class="cta">LISTEN LIVE NOW</a>
         </div>
-    </div>
+                    <script>
+                        // List of DJs with their image paths
+                        const allDJs = [
+                            { name: "DJ Jamza", image: "images/dj1.jpg" },
+                            { name: "Mr Chitatu", image: "images/dj2.jpg" },
+                            { name: "Steve Ka Sithole", image: "images/dj3.jpg" },
+                            { name: "263 Connection", image: "images/dj4.jpg" }
+                        ];
 
-    <!-- Header with logo and navigation -->
-    <header>
-        <div class="logo-container">
-            <img src="images/logo.png" alt="263 Hit Radio Logo" class="site-logo" />
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="events.html">EVENTS</a></li>
-                <li><a href="gallery.html">GALLERY</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
-            </ul>
-        </nav>
+                        // Schedule for the week (0 = Sunday, ..., 6 = Saturday)
+                        const djSchedule = {
+                            0: allDJs[2],  // Steve Ka Sithole - Sunday
+                            1: allDJs[0],  // DJ Jamza - Monday
+                            2: allDJs[3],  // 263 Connection - Tuesday
+                            3: allDJs[1],  // Mr Chitatu - Wednesday
+                            4: allDJs[1],  // Mr Chitatu - Thursday
+                            5: null,       // Friday - No DJ assigned
+                            6: allDJs[0]   // DJ Jamza - Saturday
+                        };
+
+                        const today = new Date().getDay();
+                        let djOfTheDay = djSchedule[today];
+
+                        // If no DJ assigned for today, choose a random one
+                        if (!djOfTheDay) {
+                            const randomIndex = Math.floor(Math.random() * allDJs.length);
+                            djOfTheDay = allDJs[randomIndex];
+                        }
+
+                        // Update the DOM
+                        document.getElementById("daily-dj-image").src = djOfTheDay.image;
+                        document.getElementById("daily-dj-image").alt = djOfTheDay.name;
+                        document.getElementById("dj-name").textContent = djOfTheDay.name;
+                    </script>
+                    
+                    <script>
+                        // Array of 7 different now playing messages
+                        const nowPlayingMessages = [
+                            "Where all the hits you love are played",
+                            "The Hottest Hits",
+                            "Today's Biggest Chart Toppers",
+                            "The Sound of The world Right Now",
+                            "Music That Moves The Nation",
+                            "Your Favorite Songs All Day",
+                            "The Pulse of Your Favourite Music"
+                        ];
+
+                        // Get today's day of the week (0-6)
+                        const dayOfWeek = new Date().getDay();
+
+                        // Select message based on day of week
+                        const todaysMessage = nowPlayingMessages[dayOfWeek];
+
+                        // Update the element
+                        document.getElementById('track-title').textContent = todaysMessage;
+                    </script>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>WELCOME TO 263 HIT RADIO</h1>
-            <p>Zimbabwe's #1 destination for the hottest music and entertainment</p>
-        </section>
+    <body>
+        <!-- Player notification -->
+        <div class="player-notification" id="playerNotification">Music continues playing while you browse!</div>
 
-        <div class="grid">
-            <!-- Block 1: Show Highlight -->
-            <div class="block">
-                <img src="images/top10.png" alt="263 Top 10">
-                <div class="block-content">
-                    <h3>263 TOP 10 COUNTDOWN</h3>
-                    <p>Every Friday 6PM - 8PM. Join DJ Blaze for Zimbabwe's hottest tracks.</p>
-                    <a href="#" class="cta">LISTEN NOW</a>
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="nav-link active" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="events">Events</a>
+            <a href="#" class="nav-link" data-page="contact">Contact</a>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Home Page -->
+            <section id="home-page" class="page-section active">
+                <div class="hero">
+                    <h1>Welcome to 263 Hit Radio</h1>
+                    <p>Your home for great music and positive vibes. Music continues playing as you browse!</p>
                 </div>
-            </div>
 
-            <!-- Block 2: Interactive Prompt -->
-            <div class="block">
-                <img src="images/vote.jpg" alt="Vote for the vibe">
-                <div class="block-content">
-                    <h3>DECIDE THE VIBE!</h3>
-                    <p>Vote for the next Friday night playlist. Your choice sets the mood.</p>
-                    <a href="#" class="cta">VOTE NOW</a>
-                </div>
-            </div>
+                <div class="grid">
+                    <div class="block">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1170&auto=format&fit=crop"
+                            alt="One Love Top 10">
+                        <div class="block-content">
+                            <h3>263 Hit Radio Top 10</h3>
+                            <p>Every Friday 6PM - 8PM. Join DJ Blaze as he counts down the hottest tracks.</p>
+                            <a href="#" class="cta">Listen Now</a>
+                        </div>
+                    </div>
 
-            <!-- Block 3: Personality Feature -->
-            <div class="block">
-                <div class="slideshow-container">
-                    <img class="slide active" src="images/dj1.jpg" alt="DJ 1">
-                    <img class="slide" src="images/dj2.jpg" alt="DJ 2">
-                    <img class="slide" src="images/dj3.jpg" alt="DJ 3">
-                    <img class="slide" src="images/dj4.jpg" alt="DJ 3">
+                    <div class="block">
+                        <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1074&auto=format&fit=crop"
+                            alt="Upcoming Events">
+                        <div class="block-content">
+                            <h3>Decide the Vibe!</h3>
+                            <p>Want your favorite tracks on the air? Check out upcoming events and cast your vote!</p>
+                            <a href="#" class="cta">🎉 Go to Events</a>
+                        </div>
+                    </div>
 
-                    <div class="slideshow-dots">
-                        <span class="dot active" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
+               
+
+                    <div class="block">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1170&auto=format&fit=crop"
+                            alt="Hot or Not">
+                        <div class="block-content">
+                            <h3>Hot or Not?</h3>
+                            <p>Each week we highlight a new track. Love it or leave it? You decide!</p>
+                            <a href="#" class="cta">Vote Hot or Not</a>
+                        </div>
+                    </div>
+
+                    <!-- Block 3: Personality Feature -->
+                    <div class="block">
+                        <!-- Slideshow Container -->
+                        <div class="slideshow-container">
+                            <img class="slide active" src="images/dj1.jpg" alt="DJ 1">
+                            <img class="slide" src="images/dj2.jpg" alt="DJ 2">
+                            <img class="slide" src="images/dj3.jpg" alt="DJ 3">
+                            <img class="slide" src="images/dj4.jpg" alt="DJ 4">
+                            <img class="slide" src="images/dj5.jpg" alt="DJ 4">
+
+
+
+                            <!-- Navigation Dots -->
+                            <div class="slideshow-dots">
+                                <span class="dot active" onclick="currentSlide(1)"></span>
+                                <span class="dot" onclick="currentSlide(2)"></span>
+                                <span class="dot" onclick="currentSlide(3)"></span>
+                            </div>
+                        </div>
+
+                        <div class="block-content">
+                            <h3>Meet the DJs</h3>
+                            <p>Get to know our radio hosts. Passionate, fun, and ready to rock your day.</p>
+                            <a href="#" class="cta">View Profiles</a>
+                        </div>
+                    </div>
+
+                    <style>
+                        .slideshow-container {
+                            position: relative;
+                            max-width: 100%;
+                            overflow: hidden;
+                        }
+
+                        .slide {
+                            display: none;
+                            width: 100%;
+                            transition: opacity 0.5s ease;
+                        }
+
+                        .slide.active {
+                            display: block;
+                        }
+
+                        .slideshow-dots {
+                            text-align: center;
+                            padding: 10px;
+                            position: absolute;
+                            bottom: 10px;
+                            width: 100%;
+                        }
+
+                        .dot {
+                            cursor: pointer;
+                            height: 12px;
+                            width: 12px;
+                            margin: 0 4px;
+                            background-color: rgba(255, 255, 255, 0.5);
+                            border-radius: 50%;
+                            display: inline-block;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        .dot.active,
+                        .dot:hover {
+                            background-color: white;
+                        }
+                    </style>
+
+                    <script>
+                        let slideIndex = 1;
+                        showSlides(slideIndex);
+
+                        // Auto-advance slides every 3 seconds
+                        setInterval(() => {
+                            plusSlides(1);
+                        }, 3000);
+
+                        function plusSlides(n) {
+                            showSlides(slideIndex += n);
+                        }
+
+                        function currentSlide(n) {
+                            showSlides(slideIndex = n);
+                        }
+
+                        function showSlides(n) {
+                            let i;
+                            const slides = document.getElementsByClassName("slide");
+                            const dots = document.getElementsByClassName("dot");
+
+                            if (n > slides.length) { slideIndex = 1; }
+                            if (n < 1) { slideIndex = slides.length; }
+
+                            for (i = 0; i < slides.length; i++) {
+                                slides[i].classList.remove("active");
+                            }
+
+                            for (i = 0; i < dots.length; i++) {
+                                dots[i].classList.remove("active");
+                            }
+
+                            slides[slideIndex - 1].classList.add("active");
+                            dots[slideIndex - 1].classList.add("active");
+                        }
+                    </script>
+
+                    <!-- Block 4: Weekly Contest -->
+                    <div class="block">
+                        <img src="images/hotornot.png" alt="Erop of Eronder">
+                        <div class="block-content">
+                            <h3>Hot or Not?</h3>
+                            <p>Each week we highlight a new track. Love it or leave it? You decide!</p>
+                            <a href="#" class="cta">Vote Hot or Not</a>
+                        </div>
                     </div>
                 </div>
-                <div class="block-content">
-                    <h3>MEET THE DJS</h3>
-                    <p>Get to know Zimbabwe's hottest radio personalities.</p>
-                    <a href="#" class="cta">VIEW PROFILES</a>
+                <div class="glass-card">
+                    <h2 class="section-title">📅 Weekly Show Schedule</h2>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 12px; background: var(--primary);">Day</th>
+                                <th style="padding: 12px; background: var(--primary);">Show</th>
+                                <th style="padding: 12px; background: var(--primary);">Host</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Monday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">DJ Jamza</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">DJ Jamza</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Tuesday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">263 Connection</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">-</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Wednesday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Nhubu Diaries</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Mr Chitatu</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Thursday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Thirsty Thursday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Mr Tin Tin</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Friday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Weekend Crossover</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">-</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Saturday</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">Music Mix</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #333;">DJ Jamza</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Sunday</td>
+                                <td style="padding: 10px;">Sunday Worship</td>
+                                <td style="padding: 10px;">Steve Ka Sithole</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            </section>
 
-            <!-- Block 4: Weekly Contest -->
-            <div class="block">
-                <img src="images/hotornot.png" alt="Hot or Not">
-                <div class="block-content">
-                    <h3>HOT OR NOT?</h3>
-                    <p>Each week we feature a new track. Love it or leave it? You decide!</p>
-                    <a href="#" class="cta">VOTE NOW</a>
+            <!-- Events Page -->
+            <section id="events-page" class="page-section">
+                <div class="event-promo glass-card">
+                    <h2 class="section-title">Upcoming Events</h2>
+                    <div class="event-banner">
+                        <img src="images/fusionband.jpg"
+                            alt="Fusion Band performing live on 263 Hit Radio">
+                    </div>
+                    <div class="event-details">
+                        <h2>🎤 Live on 263 Hit Radio</h2>
+                        <h3>Fusion Band</h3>
+                        <p>Catch the smooth vibes and signature sound of Fusion Band, broadcasting live on <strong>July
+                                26</strong> from <strong>6PM</strong>!</p>
+                        <p>Don't miss this exclusive performance featuring their latest hits and special guest
+                            appearances.
+                            Tune in for an unforgettable musical experience that blends traditional Zimbabwean rhythms
+                            with
+                            contemporary sounds.</p>
+                        <p><strong>Setlist includes:</strong> "African Sunset", "Unity Dance", "Harmony in Harare", and
+                            never-before-heard tracks!</p>
+                    </div>
                 </div>
-            </div>
+
+                <div class="glass-card">
+                    <div class="calendar-header">
+                        <h2 class="section-title">Events Calendar</h2>
+                        <div class="month-nav">
+                            <button>&lt;&lt;</button>
+                            <span style="font-size: 1.2rem; font-weight: bold;">May 2025</span>
+                            <button>&gt;&gt;</button>
+                        </div>
+                    </div>
+                    <table class="calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                                <th>Sunday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="day-number">28</span><span class="event-count">5 Events</span></td>
+                                <td><span class="day-number">29</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">30</span><span class="event-count">8 Events</span></td>
+                                <td><span class="day-number">1</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">2</span><span class="event-count">3 Events</span></td>
+                                <td><span class="day-number">3</span><span class="event-count">6 Events</span></td>
+                                <td><span class="day-number">4</span><span class="event-count">5 Events</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">5</span><span class="event-count">2 Events</span></td>
+                                <td><span class="day-number">6</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">7</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">8</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">9</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">10</span><span class="event-count">9 Events</span></td>
+                                <td><span class="day-number">11</span><span class="event-count">9 Events</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">12</span><span class="event-count">6 Events</span></td>
+                                <td><span class="day-number">13</span><span class="event-count">7 Events</span></td>
+                                <td><span class="day-number">14</span><span class="event-count">6 Events</span></td>
+                                <td><span class="day-number">15</span><span class="event-count">7 Events</span></td>
+                                <td><span class="day-number">16</span><span class="event-count">8 Events</span></td>
+                                <td><span class="day-number">17</span><span class="event-count">11 Events</span></td>
+                                <td><span class="day-number">18</span><span class="event-count">10 Events</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">19</span><span class="event-count">5 Events</span></td>
+                                <td><span class="day-number">20</span><span class="event-count">6 Events</span></td>
+                                <td><span class="day-number">21</span><span class="event-count">5 Events</span></td>
+                                <td><span class="day-number">22</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">23</span><span class="event-count">6 Events</span></td>
+                                <td><span class="day-number">24</span><span class="event-count">5 Events</span></td>
+                                <td><span class="day-number">25</span><span class="event-count">5 Events</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">26</span><span class="event-count">3 Events</span></td>
+                                <td><span class="day-number">27</span><span class="event-count">4 Events</span></td>
+                                <td><span class="day-number">28</span><span class="event-count">3 Events</span></td>
+                                <td><span class="day-number">29</span><span class="event-count">3 Events</span></td>
+                                <td><span class="day-number">30</span><span class="event-count">5 Events</span></td>
+                                <td><span class="day-number">31</span><span class="event-count">5 Events</span></td>
+                                <td><span class="day-number">1</span><span class="event-count">5 Events</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3>📤 Submit an Event</h3>
+                <form action="mailto:263hitradio@gmail.com" method="POST" enctype="text/plain">
+                    <fieldset>
+                        <legend>Your Details</legend>
+                        <label>Name: <input type="text" name="Name" required /></label>
+                        <label>Email: <input type="email" name="Email" required /></label>
+                        <label>Contact Number: <input type="text" name="Contact Number" required /></label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Event Info</legend>
+                        <label>Event Name: <input type="text" name="Event Name" required /></label>
+                        <label>From: <input type="date" name="From Date" required /></label>
+                        <label>To: <input type="date" name="To Date" required /></label>
+                        <label>Start Time: <input type="time" name="Start Time" required /></label>
+                        <label>End Time: <input type="time" name="End Time" required /></label>
+                        <label>Location Name: <input type="text" name="Location Name" required /></label>
+                        <label>Address: <input type="text" name="Address" required /></label>
+                        <label>City/Town: <input type="text" name="City" required /></label>
+                        <label>Province: <input type="text" name="Province" required /></label>
+                        <label>Event Price: <input type="text" name="Event Price" /></label>
+                        <label>Event Contact Details: <input type="text" name="Event Contact Info" /></label>
+                        <label>Event Description:
+                            <textarea name="Event Description" maxlength="600" placeholder="Max 600 characters"
+                                required></textarea>
+                        </label>
+                        <label>
+                            <input type="checkbox" required /> I consent to my submitted data being collected and
+                            stored.
+                        </label>
+                    </fieldset>
+
+                    <button type="submit">📨 Submit Event</button>
+                </form>
+
+                <div class="disclaimer">
+                    <h4>NOTES:</h4>
+                    <ul>
+                        <li>Please use Enter only in the event description box.</li>
+                        <li>We use a 24-hour clock format.</li>
+                        <li>Keep descriptions under 100 words (max 600 characters).</li>
+                    </ul>
+
+                    <h4>DISCLAIMER:</h4>
+                    <ul>
+                        <li>Events take up to 24 hours to appear.</li>
+                        <li>Events after 2PM on Friday appear on Monday.</li>
+                        <li>We can’t guarantee your event will be read on air, but it will appear on the calendar.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Contact Page -->
+            <section id="contact-page" class="page-section">
+                <div class="glass-card">
+                    <h2 class="section-title">🎧 Meet the DJs</h2>
+                    <div class="dj-grid">
+                        <div class="dj-card">
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1170&auto=format&fit=crop"
+                                alt="DJ Jamza">
+                            <h3>DJ Jamza</h3>
+                            <p>Monday & Saturday</p>
+                        </div>
+                        <div class="dj-card">
+                            <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=1170&auto=format&fit=crop"
+                                alt="Steve Ka Sithole">
+                            <h3>DJ Steve Ka Sithole</h3>
+                            <p>Wednesday</p>
+                        </div>
+                        <div class="dj-card">
+                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1170&auto=format&fit=crop"
+                                alt="Munya Thela">
+                            <h3>DJ Bamdiki Munya wekwaThela</h3>
+                            <p>Thursday</p>
+                        </div>
+                        <div class="dj-card">
+                            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1074&auto=format&fit=crop"
+                                alt="Munya Thela">
+                            <h3>DJ Oliver Chigariro</h3>
+                            <p>Sunday</p>
+                        </div>
+                        <div class="dj-card">
+                            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1170&auto=format&fit=crop"
+                                alt="Munya Thela">
+                            <h3>DJ Parachute</h3>
+                            <p>Thursday</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2 class="section-title">📬 Contact Us</h2>
+                    <div class="contact-options">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3>WhatsApp Community</h3>
+                            <p>Join our active community of listeners, get exclusive updates, and chat with the DJs</p>
+                            <a href="#" class="contact-btn">Join Community</a>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>Chat With Us</h3>
+                            <p>Have questions or want to request a song? Our team is ready to chat with you</p>
+                            <a href="#" class="contact-btn">Start Chat</a>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email Us</h3>
+                            <p>Prefer email? Send us your thoughts, feedback, or business inquiries</p>
+                            <a href="mailto:263hitradio@gmail.com" class="contact-btn">Send Email</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h2 class="section-title">🎤 Join Our DJ Team</h2>
+                    <p style="text-align: center; margin-bottom: 25px;">Passionate about music? Apply to become a DJ on
+                        One
+                        Love Radio!</p>
+                    <form class="dj-form">
+                        <div style="display: grid; gap: 20px; margin-bottom: 20px;">
+                            <div>
+                                <label
+                                    style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">Full
+                                    Name</label>
+                                <input type="text"
+                                    style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: rgba(20, 20, 20, 0.8); color: white;"
+                                    placeholder="Enter your full name" required>
+                            </div>
+
+                            <div>
+                                <label
+                                    style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">Email
+                                    Address</label>
+                                <input type="email"
+                                    style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: rgba(20, 20, 20, 0.8); color: white;"
+                                    placeholder="Enter your email" required>
+                            </div>
+
+                            <div>
+                                <label
+                                    style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">Social
+                                    Media Links</label>
+                                <textarea
+                                    style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: rgba(20, 20, 20, 0.8); color: white; min-height: 100px;"
+                                    placeholder="Instagram, Facebook, Mixcloud, etc."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            style="background: var(--primary); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: all 0.3s; width: 100%;">Submit
+                            Application</button>
+                    </form>
+                </div>
+            </section>
         </div>
 
-        <!-- Weekly Schedule -->
-        <section class="weekly-schedule">
-            <details>
-                <summary>
-                    <h2>📅 WEEKLY SHOW SCHEDULE (CLICK TO EXPAND)</h2>
-                </summary>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>DAY</th>
-                            <th>SHOW</th>
-                            <th>HOST</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MONDAY</td>
-                            <td>Morning Jam</td>
-                            <td>DJ Jamza</td>
-                        </tr>
-                        <tr>
-                            <td>TUESDAY</td>
-                            <td>263 Connection</td>
-                            <td>Team</td>
-                        </tr>
-                        <tr>
-                            <td>WEDNESDAY</td>
-                            <td>Midweek Mix</td>
-                            <td>Mr Chitatu</td>
-                        </tr>
-                        <tr>
-                            <td>THURSDAY</td>
-                            <td>Throwback Thursday</td>
-                            <td>Mr Tin Tin</td>
-                        </tr>
-                        <tr>
-                            <td>FRIDAY</td>
-                            <td>Weekend Warmup</td>
-                            <td>DJ Jamza</td>
-                        </tr>
-                        <tr>
-                            <td>SATURDAY</td>
-                            <td>Saturday Sessions</td>
-                            <td>Various DJs</td>
-                        </tr>
-                        <tr>
-                            <td>SUNDAY</td>
-                            <td>Sunday Chill</td>
-                            <td>Steve Ka Sithole</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </details>
-        </section>
-
-        <!-- Listening Options -->
-        <section class="listen-links">
-            <h2>📡 LISTEN TO 263 HIT RADIO</h2>
-            <ul>
-                <li><a href="https://www.liveradio.ie/stations/263-hit-radio" target="_blank">LiveRadio.ie</a></li>
-                <li><a href="https://theonestopradio.com/radio/zw-263-hit-radio" target="_blank">TheOneStopRadio</a></li>
-                <li><a href="https://mytuner-radio.com/radio/263-hit-radio-507829/" target="_blank">MyTuner Radio</a></li>
-                <li><a href="https://onlineradiobox.com/uk/263hit/?cs=uk.263hit&played=1" target="_blank">OnlineRadioBox</a></li>
-            </ul>
-        </section>
-
-        <!-- Meet the DJs -->
-        <section class="meet-djs">
-            <h2>🎧 MEET THE 263 HIT RADIO TEAM</h2>
-            <div class="dj-grid">
-                <div class="dj-card">
-                    <img src="images/dj1.jpg" alt="DJ Jamza">
-                    <h3>DJ JAMZA</h3>
-                    <p>Monday & Friday</p>
-                </div>
-                <div class="dj-card">
-                    <img src="images/dj2.jpg" alt="Munya Thela">
-                    <h3>MUNYA THELA</h3>
-                    <p>Thursday</p>
-                </div>
-                <div class="dj-card">
-                    <img src="images/dj3.jpg" alt="Steve Ka Sithole">
-                    <h3>STEVE KA SITHOLE</h3>
-                    <p>Sunday</p>
-                </div>
+        <footer>
+            <p>&copy; 2025 263 Hit Radio. All rights reserved.</p>
+            <div class="socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
-            <div class="join-dj-cta">
-                <p>🎤 WANT TO JOIN ZIMBABWE'S HOTTEST RADIO TEAM?</p>
-                <a href="contact.html" class="join-btn">APPLY TO BE A DJ</a>
-            </div>
-        </section>
+        </footer>
 
-        <!-- WhatsApp Community -->
-        <section class="whatsapp-join">
-            <h2>💬 JOIN OUR WHATSAPP COMMUNITY</h2>
-            <a href="https://chat.whatsapp.com/KnwSpDRRsRG3JqqCPfanB1" class="whatsapp-btn" target="_blank">
-                <i class="fab fa-whatsapp"></i> JOIN NOW
-            </a>
-        </section>
+        <script>
+    
+            // DOM elements
+            const player = document.getElementById('radioPlayer');
+            const playerStatus = document.getElementById('playerStatus');
+            const playerNotification = document.getElementById('playerNotification');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
 
-        <!-- Song Request -->
-        <section class="song-request">
-            <h2>REQUEST A SONG</h2>
-            <form id="whatsappForm">
-                <input type="text" id="name" placeholder="Your Name" required />
-                <input type="text" id="title" placeholder="Song Title" required />
-                <input type="text" id="artist" placeholder="Artist" required />
-                <button type="submit">SEND REQUEST</button>
-            </form>
-        </section>
-    </main>
+            // Player state
+            let isPlaying = false;
+            let currentTime = 0;
+            let currentVolume = 0.7;
 
-    <footer>
-        <p>&copy; 2025 263 HIT RADIO. ZIMBABWE'S #1 HIT MUSIC STATION.</p>
-        <div class="socials">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-    </footer>
+            // Set initial volume
+            player.volume = currentVolume;
 
-    <script>
-        // Slideshow functionality
-        let slideIndex = 1;
-        showSlides(slideIndex);
-        
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        
-        function showSlides(n) {
-            let i;
-            const slides = document.getElementsByClassName("slide");
-            const dots = document.getElementsByClassName("dot");
-            
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
-            
-            for (i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
+            // Save player state to localStorage
+            function savePlayerState() {
+                localStorage.setItem('playerState', JSON.stringify({
+                    isPlaying: !player.paused,
+                    currentTime: player.currentTime,
+                    currentVolume: player.volume
+                }));
             }
-            
-            for (i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
+
+            // Load player state from localStorage
+            function loadPlayerState() {
+                const savedState = localStorage.getItem('playerState');
+                if (savedState) {
+                    const state = JSON.parse(savedState);
+                    if (state.isPlaying) {
+                        player.currentTime = state.currentTime;
+                        player.volume = state.currentVolume;
+                        volumeControl.value = state.currentVolume;
+                        player.play().catch(e => console.log("Autoplay prevented"));
+                        updatePlayerUI(true);
+                    }
+                }
             }
-            
-            slides[slideIndex-1].classList.add("active");
-            dots[slideIndex-1].classList.add("active");
-        }
-        
-        // Auto-advance slides every 3 seconds
-        setInterval(() => {
-            plusSlides(1);
-        }, 3000);
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'linear-gradient(to right, #182f49, #E31937)';
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-            } else {
-                header.style.background = 'transparent';
-                header.style.boxShadow = 'none';
+
+            // Update player UI
+            function updatePlayerUI(playing) {
+                if (playing) {
+                    listenBtn.textContent = "STOP PLAYING";
+                    listenBtn.style.background = "#fff";
+                    listenBtn.style.color = "#E31937";
+                    playerStatus.textContent = "Playing...";
+                    playerStatus.style.color = "#4CAF50";
+                    isPlaying = true;
+                } else {
+                    listenBtn.textContent = "LISTEN LIVE NOW";
+                    listenBtn.style.background = "#E31937";
+                    listenBtn.style.color = "#fff";
+                    playerStatus.textContent = "Stopped";
+                    playerStatus.style.color = "#aaa";
+                    isPlaying = false;
+                }
             }
-        });
-        
-        // Song request form
-        document.getElementById("whatsappForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const name = document.getElementById("name").value.trim();
-            const title = document.getElementById("title").value.trim();
-            const artist = document.getElementById("artist").value.trim();
-            const message = `🎵 *263 HIT RADIO SONG REQUEST* 🎵\n\n👤 Name: ${name}\n🎶 Song: ${title}\n🎤 Artist: ${artist}`;
-            window.open(`https://wa.me/447850930017?text=${encodeURIComponent(message)}`, "_blank");
-        });
-    </script>
-</body>
+
+            // Toggle play/pause
+            function togglePlay() {
+                if (player.paused) {
+                    player.play().then(() => {
+                        updatePlayerUI(true);
+                        showNotification();
+                    }).catch(e => {
+                        console.error("Playback failed:", e);
+                        alert("Playback failed. Please click the play button again to start.");
+                    });
+                } else {
+                    player.pause();
+                    updatePlayerUI(false);
+                }
+                savePlayerState();
+            }
+
+            // Show notification that music continues playing
+            function showNotification() {
+                playerNotification.style.display = "block";
+                setTimeout(() => {
+                    playerNotification.style.display = "none";
+                }, 3000);
+            }
+
+            // Update volume
+            function updateVolume() {
+                player.volume = volumeControl.value;
+                savePlayerState();
+            }
+
+            // Navigate to page
+            function navigateToPage(page) {
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === page) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Show active page section
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === `${page}-page`) {
+                        section.classList.add('active');
+                    }
+                });
+
+                // Update URL without reloading
+                history.pushState({ page }, '', `#${page}`);
+
+                // Show notification
+                showNotification();
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+
+            // Event listeners
+            listenBtn.addEventListener('click', togglePlay);
+            volumeControl.addEventListener('input', updateVolume);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.getAttribute('data-page');
+                    navigateToPage(page);
+                });
+            });
+
+            // Save state when page is unloaded
+            window.addEventListener('beforeunload', savePlayerState);
+
+            // Initialize when page loads
+            window.addEventListener('DOMContentLoaded', () => {
+                loadPlayerState();
+
+                // Check URL hash for initial page
+                const hash = window.location.hash.substring(1);
+                const validPages = ['home', 'events', 'contact'];
+                const initialPage = validPages.includes(hash) ? hash : 'home';
+                navigateToPage(initialPage);
+
+                // Add event listeners to calendar cells
+                const calendarCells = document.querySelectorAll('.calendar-table td');
+                calendarCells.forEach(cell => {
+                    cell.addEventListener('click', function () {
+                        const day = this.querySelector('.day-number').textContent;
+                        alert(`Events for May ${day}, 2025 will be displayed here.`);
+                    });
+                });
+
+                // Form submission handlers
+                document.querySelector('.dj-form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    alert('DJ application submitted successfully! Our team will contact you soon.');
+                    this.reset();
+                });
+
+                // Simulate track title changes
+                const tracks = [
+                    "Zimbabwe's Hottest Hits",
+                    "Afrobeat Mix",
+                    "Zim Dancehall Special",
+                    "Reggae Classics",
+                    "Urban Grooves Collection"
+                ];
+
+                let trackIndex = 0;
+                setInterval(() => {
+                    trackIndex = (trackIndex + 1) % tracks.length;
+                    trackTitle.textContent = tracks[trackIndex];
+                }, 15000);
+            });
+        </script>
+
+        <script>
+            // DOM elements
+            const listenBtn = document.getElementById('listenBtn');
+            const player = document.getElementById('radioPlayer');
+            const volumeControl = document.getElementById('volumeControl');
+            const trackTitle = document.getElementById('track-title');
+
+            // Track list for simulation
+            const tracks = [
+                "Zimbabwe's Hottest Hits",
+                "Afrobeat Mix Vol. 5",
+                "Zim Dancehall Special",
+                "Reggae Classics Collection",
+                "Urban Grooves Revolution",
+                "Traditional Rhythms Fusion"
+            ];
+
+            // Initialize player
+            function initPlayer() {
+                // Restore play state from localStorage
+                const shouldPlay = localStorage.getItem('playRadio') === 'true';
+                if (shouldPlay) {
+                    player.play().then(() => {
+                        listenBtn.textContent = "PAUSE";
+                    }).catch(() => {
+                        listenBtn.textContent = "LISTEN LIVE NOW";
+                    });
+                }
+
+                // Set initial volume
+                player.volume = volumeControl.value;
+
+                // Update button on play/pause
+                player.addEventListener('play', () => {
+                    listenBtn.textContent = "PAUSE";
+                    localStorage.setItem('playRadio', 'true');
+                });
+
+                player.addEventListener('pause', () => {
+                    listenBtn.textContent = "LISTEN LIVE NOW";
+                    localStorage.setItem('playRadio', 'false');
+                });
+
+                // Toggle play/pause
+                listenBtn.addEventListener('click', () => {
+                    if (player.paused) {
+                        player.play().catch(e => {
+                            console.error('Playback failed:', e);
+                            alert("Playback failed. Please click the play button again to start.");
+                        });
+                    } else {
+                        player.pause();
+                    }
+                });
+
+                // Update volume
+                volumeControl.addEventListener('input', () => {
+                    player.volume = volumeControl.value;
+                });
+
+                // Simulate track changes
+                let currentTrack = 0;
+                setInterval(() => {
+                    if (!player.paused) { // Only update if player is active
+                        currentTrack = (currentTrack + 1) % tracks.length;
+
+                        // Add animation effect
+                        trackTitle.style.opacity = '0';
+                        setTimeout(() => {
+                            trackTitle.textContent = tracks[currentTrack];
+                            trackTitle.style.opacity = '1';
+                        }, 300);
+                    }
+                }, 10000);
+            }
+
+            // Save play state when user leaves
+            window.addEventListener('beforeunload', () => {
+                localStorage.setItem('playRadio', !player.paused);
+            });
+
+            // Initialize when page loads
+            window.addEventListener('DOMContentLoaded', initPlayer);
+        </script>
+    </body>
+
 </html>
