@@ -89,26 +89,34 @@
             position: relative;
         }
 
-        .logo-container {
-            flex: 0 0 200px;
-            text-align: center;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+   .logo-container {
+    flex: 0 0 200px;
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .logo-container img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary);
-            background: linear-gradient(145deg, var(--accent-dark), var(--primary));
-            box-shadow: 0 0 25px rgba(255, 0, 38, 0.8);
-            filter: drop-shadow(0 0 10px rgba(255, 0, 38, 0.7));
-            animation: pulse 3s infinite;
-        }
+.logo-container img {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px; /* Changed from 50% to create square with slightly rounded corners */
+    object-fit: cover;
+    border: 3px solid var(--secondary);
+    background: linear-gradient(145deg, var(--accent-dark), var(--primary));
+    box-shadow: 0 0 25px rgba(255, 0, 38, 0.8);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 38, 0.7));
+    animation: pulse 3s infinite;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+}
+
+/* Optional: Add hover effect for extra interactivity */
+.logo-container img:hover {
+    transform: rotateY(15deg) scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 0, 38, 0.9);
+}
 .dj-image {
     width: 140px;
     height: 175px; /* Adjusted for 4:5 aspect ratio */
@@ -732,6 +740,51 @@
             margin: 20px auto 0;
             font-family: 'Orbitron', sans-serif;
         }
+        .event-slideshow {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Maintains original container height */
+    overflow: hidden;
+    border-bottom: 3px solid var(--primary);
+    border-radius: 8px 8px 0 0; /* Softened top corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Added subtle depth */
+}
+
+.event-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%; /* Focuses on upper center of images */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    transform: scale(1.01); /* Prevents edge gaps during transitions */
+    will-change: opacity, transform; /* Optimizes animations */
+}
+
+.event-slide.active {
+    opacity: 1;
+    transform: scale(1); /* Slight zoom effect on active */
+}
+
+/* Optional enhancements */
+.event-slideshow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-slide {
+        object-position: center 30%; /* Adjusts focus point for mobile */
+    }
+}
 
         .event-form button[type="submit"]:hover {
             background: var(--accent-light);
@@ -1443,78 +1496,82 @@
 <body>
     <!-- Combined Header with Navigation -->
     <div class="sticky-header">
-        <div class="header-content">
-            <header id="live-header">
-                <div class="header-container">
-                    <div class="logo-container">
-                        <img src="images/dj6.jpg" alt="263 HIT RADIO Radio Logo">
-                    </div>
+ <div class="header-content">
+    <div class="live-banner" style="background: linear-gradient(90deg, var(--primary), #d81b3a); color: white; text-align: center; padding: 8px; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">
+        🔴 LIVE Broadcast from 6PM GMT/7PM GMT Weekdays
+    </div>
+    <header id="live-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="images/dj6.jpg" alt="263 HIT RADIO Radio Logo">
+            </div>
 
-                    <div class="radio-info">
-                        <div class="station-name">263 HIT RADIO </div>
-                        <div class="now-playing">Playing: <span id="track-title">Zimbabwe's Hottest Hits</span></div>
-                        <div class="listen-options">
-                            <button id="listenBtn">
-                                <i class="fas fa-play"></i> LISTEN LIVE NOW
-                            </button>
-                            <div class="options-dropdown" id="listenOptions">
-                                <a href="#" class="option-item" data-src="https://altair.streamerr.co/8180/stream">
-                                    <i class="fas fa-radio"></i> 263 HIT RADIO Radio
-                                </a>
-                                <a href="#" class="option-item" data-src="https://uk3.internet-radio.com/proxy/263hitradio?mp=/stream">
-                                    <i class="fas fa-globe-europe"></i> Radio UK
-                                </a>
-                                <a href="#" class="option-item" data-src="http://stream.liveradio.ie/263hitradio">
-                                    <i class="fas fa-music"></i> LiveRadio.ie
-                                </a>
-                                <a href="#" class="option-item" data-src="http://onestopradio.co.za:8000/stream">
-                                    <i class="fas fa-headphones"></i> TheOneStopRadio
-                                </a>
-                                <a href="#" class="option-item" data-src="http://stream.263hitradio.com:8000/stream">
-                                    <i class="fas fa-satellite"></i> 263hitradio.com
-                                </a>
-                                <a href="#" class="option-item" data-src="https://stream.263hitradio.com:8443/stream">
-                                    <i class="fas fa-wifi"></i> Radioline (SSL)
-                                </a>
-                            </div>
-                        </div>
-                        <div class="share-container">
-                            <button class="share-btn" id="shareBtn">
-                                <i class="fas fa-share-alt"></i> SHARE
-                            </button>
-                            <div class="share-options" id="shareOptions">
-                                <div class="share-option" data-type="facebook">
-                                    <i class="fab fa-facebook"></i> Facebook
-                                </div>
-                                <div class="share-option" data-type="twitter">
-                                    <i class="fab fa-twitter"></i> Twitter
-                                </div>
-                                <div class="share-option" data-type="whatsapp">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </div>
-                                <div class="share-option" data-type="copy">
-                                    <i class="fas fa-copy"></i> Copy Link
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dj-player-section">
-                        <div class="dj-image">
-                            <img id="djMainImage" src="images/dj6.jpg" alt="Current DJ">
-                        </div>
-                        <div class="dj-name" id="djName">DJ Jamza</div>
-                        <div class="player-controls">
-                            <div class="volume-control">
-                                <i class="fas fa-volume-down"></i>
-                                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.7">
-                                <i class="fas fa-volume-up"></i>
-                            </div>
-                        </div>
-                        <audio id="radioPlayer" src="https://altair.streamerr.co/8180/stream" preload="none"></audio>
+            <div class="radio-info">
+                <div class="station-name">263 HIT RADIO </div>
+                <div class="now-playing">Playing: <span id="track-title">Zimbabwe's Hottest Hits</span></div>
+                <div class="listen-options">
+                    <button id="listenBtn">
+                        <i class="fas fa-play"></i> LISTEN LIVE NOW
+                    </button>
+                    <div class="options-dropdown" id="listenOptions">
+                        <a href="#" class="option-item" data-src="https://altair.streamerr.co/8180/stream">
+                            <i class="fas fa-radio"></i> 263 HIT RADIO Radio
+                        </a>
+                        <a href="#" class="option-item" data-src="https://uk3.internet-radio.com/proxy/263hitradio?mp=/stream">
+                            <i class="fas fa-globe-europe"></i> Radio UK
+                        </a>
+                        <a href="#" class="option-item" data-src="http://stream.liveradio.ie/263hitradio">
+                            <i class="fas fa-music"></i> LiveRadio.ie
+                        </a>
+                        <a href="#" class="option-item" data-src="http://onestopradio.co.za:8000/stream">
+                            <i class="fas fa-headphones"></i> TheOneStopRadio
+                        </a>
+                        <a href="#" class="option-item" data-src="http://stream.263hitradio.com:8000/stream">
+                            <i class="fas fa-satellite"></i> 263hitradio.com
+                        </a>
+                        <a href="#" class="option-item" data-src="https://stream.263hitradio.com:8443/stream">
+                            <i class="fas fa-wifi"></i> Radioline (SSL)
+                        </a>
                     </div>
                 </div>
-            </header>
+                <div class="share-container">
+                    <button class="share-btn" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> SHARE
+                    </button>
+                    <div class="share-options" id="shareOptions">
+                        <div class="share-option" data-type="facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </div>
+                        <div class="share-option" data-type="twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </div>
+                        <div class="share-option" data-type="whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </div>
+                        <div class="share-option" data-type="copy">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dj-player-section">
+                <div class="dj-image">
+                    <img id="djMainImage" src="images/dj6.jpg" alt="Current DJ">
+                </div>
+                <div class="dj-name" id="djName">DJ Jamza</div>
+                <div class="player-controls">
+                    <div class="volume-control">
+                        <i class="fas fa-volume-down"></i>
+                        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.7">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                </div>
+                <audio id="radioPlayer" src="https://altair.streamerr.co/8180/stream" preload="none"></audio>
+            </div>
+        </div>
+    </header>
+</div>
         </div>
         <script>
             // Detailed DJ schedule with times (day, start, end, dj, show, img)
@@ -1546,7 +1603,7 @@
             ];
 
             // Unsplash photo for Auto DJ
-            const autoDjPhoto = "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80";
+            const autoDjPhoto = "images/dj6.jpg";
 
             function getCurrentDJ() {
             const now = new Date();
@@ -1555,9 +1612,9 @@
             const minutes = now.getMinutes();
             const currentTime = hours * 60 + minutes;
 
-            // If no DJ is scheduled, show Auto DJ
+            // If no DJ is scheduled, show Music Interlude
             if (!djSchedule[day] || djSchedule[day].length === 0) {
-                return { dj: "Auto DJ", show: "Playing the best hits", img: autoDjPhoto };
+                return { dj: "Music Interlude", show: "Playing the best hits", img: autoDjPhoto };
             }
 
             // Check each time slot for today
@@ -1570,7 +1627,7 @@
             }
 
             // If no slot matches, show Auto DJ
-            return { dj: "Auto DJ", show: "Playing the best hits", img: autoDjPhoto };
+            return { dj: "Music Interlude", show: "Playing the best hits", img: autoDjPhoto };
             }
 
             function updateDJImage() {
@@ -1671,8 +1728,7 @@
 
          <div class="block">
     <div class="event-slideshow">
-        <img src="images/fusionband.jpg" alt="Fusion Band performing live" class="event-slide active">
-        <img src="images/263hitradioevent.jpg" alt="263 Hit Radio Event" class="event-slide">
+        <img src="images/dj6.jpg" alt="DJ 6 performing live" class="event-slide active">
     </div>
     <div class="block-content">
         <h3>Upcoming Events</h3>
@@ -1682,26 +1738,33 @@
 </div>
 
 <style>
-.event-slideshow {
+
+    .live-banner {
+    background: linear-gradient(90deg, var(--primary), #d81b3a);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     position: relative;
-    width: 100%;
-    height: 200px; /* Same height as your original image container */
-    overflow: hidden;
-    border-bottom: 3px solid var(--primary);
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.event-slide {
+.live-banner::before {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.event-slide.active {
-    opacity: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255,255,255,0.3),
+        transparent);
+    animation: shine 3s infinite;
 }
 </style>
 
@@ -1860,7 +1923,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="fan-photos/fan1 (1).jpeg" alt="Fan 1">
                     <div class="fan-info">
                         <h3>Batsi Mahara</h3>
-                        <p>"263 Hit Radio keeps me going through my workday!"</p>
+                        <p>"Mafaro Ngaawande ne 263 Hit Radio!"</p>
                     </div>
                 </div>
                 
@@ -1868,8 +1931,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (2).jpeg" alt="Fan 2">
                     <div class="fan-info">
-                        <h3>Mike T.</h3>
-                        <p>"Best music selection I've ever heard on radio!"</p>
+                        <h3>Fatima.</h3>
+                        <p>"263 Is the place to be Good Music so much love"</p>
                     </div>
                 </div>
                 
@@ -1877,8 +1940,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (3).jpeg" alt="Fan 3">
                     <div class="fan-info">
-                        <h3>Lisa M.</h3>
-                        <p>"The DJs feel like family. Love this station!"</p>
+                        <h3>Manya</h3>
+                        <p>"I'm loving with dj Auto on radio 263,radio Nakaa,radio bunandi. The hosts are knowledgeable and entertaining,and the topics are really interesting, like nhubu diaries. I think you'd enjoy it,you should give it a try...one love radio."</p>
                     </div>
                 </div>
                 
@@ -1886,8 +1949,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (4).jpeg" alt="Fan 4">
                     <div class="fan-info">
-                        <h3>David K.</h3>
-                        <p>"Never miss the Friday Weekend Crossover!"</p>
+                        <h3>Malikebo</h3>
+                        <p>"I'm impressed with the sound quality of this radio its really rich and full.
+One love radio"</p>
                     </div>
                 </div>
                 
@@ -1895,8 +1959,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (5).jpeg" alt="Fan 5">
                     <div class="fan-info">
-                        <h3>Emily R.</h3>
-                        <p>"My go-to station for positive vibes."</p>
+                        <h3>AJ</h3>
+                        <p>" I love 263 Radio clear sound friendly people"</p>
                     </div>
                 </div>
                 
@@ -1904,8 +1968,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (6).jpeg" alt="Fan 6">
                     <div class="fan-info">
-                        <h3>James P.</h3>
-                        <p>"The only radio that plays my requests!"</p>
+                        <h3>Innocent</h3>
+                        <p>"Its nyc to be a family member of 263 hit radio. We learn a lot evryday. at  the same time given opportunities in so many ways. Cum. n join  us friends this sation is sweet ❤️"</p>
                     </div>
                 </div>
                 
@@ -1913,8 +1977,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (7).jpeg" alt="Fan 7">
                     <div class="fan-info">
-                        <h3>Olivia S.</h3>
-                        <p>"Love the community feel of this station."</p>
+                        <h3>Jabinos Zingori</h3>
+                        <p>"263 Hit radio where love flows from the studios to the listeners.
+We broadcast on Loveband airwaves. 
+Click www.263hitradio.com and let the love flow"</p>
                     </div>
                 </div>
                 
@@ -1922,8 +1988,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (8).jpeg" alt="Fan 8">
                     <div class="fan-info">
-                        <h3>Robert L.</h3>
-                        <p>"263 Connection is my favorite show!"</p>
+                        <h3>Tivvy</h3>
+                        <p>"263 is just Naka try it log on to www.263hitradio.com"</p>
                     </div>
                 </div>
                 
@@ -1931,35 +1997,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (9).jpeg" alt="Fan 9">
                     <div class="fan-info">
-                        <h3>Grace W.</h3>
-                        <p>"The Sunday Gospel show is heavenly!"</p>
+                        <h3>Nyari</h3>
+                        <p>"263 hit radio is where real love is found. We're really blessed to have this radio station, the presenters know how to interact with the listeners and i like how people are united on this station. 263 hit radio is my stress reliever. May the good Lord continue to bless the founder of this station ,the presenters and the listeners (263 Hit radio family)"</p>
                     </div>
                 </div>
                 
                 <!-- Fan 10 -->
                 <div class="fan-card">
-                    <img src="fan-photos/fan1 (1).jpeg" alt="Fan 10">
+                    <img src="fan-photos/fan1 (10).jpeg" alt="Fan 10">
                     <div class="fan-info">
-                        <h3>Thomas B.</h3>
-                        <p>"Great mix of old school and new hits."</p>
+                        <h3>Mr Goodman Tembo</h3>
+                        <p>"263 Hit Radio has become one of my best and favorite Radio station. The radio station  entertain us ,educate and informative. 263hitradio is my Yard 🎧."</p>
                     </div>
                 </div>
                 
                 <!-- Fan 11 -->
                 <div class="fan-card">
-                    <img src="fan-photos/fan1 (2).jpeg" alt="Fan 11">
+                    <img src="fan-photos/fan1 (11).jpeg" alt="Fan 11">
                     <div class="fan-info">
-                        <h3>Sophia M.</h3>
-                        <p>"My morning starts with One Love!"</p>
+                        <h3>Lasty Jmau</h3>
+                        <p>"263 Hit Radio ndi mawu atsopano komanso osangalatsa pa nkhani ya zosangalatsa, omwe amanyadira kuyimira chikhalidwe cha a Zimbabwe, nyimbo komanso luso. Ndi mphamvu yake yosangalatsa, nyimbo zosiyanasiyana komanso kulumikizana ndi anthu, imabweretsa omvera pamodzi kudzera mu mphamvu ya nyimbo zabwino komanso zokambirana zothandiza. Imeneyi si wailesi yokha — ndi kayendedwe komwe kumalemekeza luso, kulimbikitsa achinyamata, komanso kusunga mtima wa nyimbo za ku Zim kuti uzapitirire. Pitirizani kukwera, 263 Hit Radio! 🇿🇼🎶🔥"</p>
                     </div>
                 </div>
                 
                 <!-- Fan 12 -->
                 <div class="fan-card">
-                    <img src="fan-photos/fan1 (3).jpeg" alt="Fan 12">
+                    <img src="fan-photos/fan1 (12).jpeg" alt="Fan 12">
                     <div class="fan-info">
-                        <h3>Daniel K.</h3>
-                        <p>"The perfect soundtrack to my life."</p>
+                        <h3>Mrs Jays</h3>
+                        <p>"A big thank you to 263 Hit Radio and all the amazing presenters! You are a true treasure to the community — bringing great music, inspiring stories, and exciting conversations. Every show is full of energy and passion. Keep up the excellent broadcasting — we truly appreciate all your efforts!"</p>
                     </div>
                 </div>
             </div>
@@ -3071,7 +3137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <!-- Fan 9 -->
             <div class="fan-photo">
-                <img src="fan-photos/fan (9).jpeg" alt="Fan Photo 9">
+                <img src="fan-photos/fan1 (9).jpeg" alt="Fan Photo 9">
                 <div class="fan-overlay">
                     <span>Grace W.</span>
                 </div>
@@ -3305,7 +3371,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="images/dj6.jpg" alt="Auto DJ" class="dj-image">
                 </div>
                 <div class="dj-info">
-                    <h3>Auto DJ</h3>
+                    <h3>Music Interlude</h3>
                     <div class="dj-schedule">
                         <i class="fas fa-calendar-day"></i> Weekday Mornings
                     </div>
@@ -3319,24 +3385,116 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="glass-card">
-        <h2 class="section-title">🎤 Want To Join Our Team?</h2>
-        <div class="join-team">
-            <div class="join-text">
-                <h3>DJ Applications Open!</h3>
-                <p>We're always looking for talented DJs and presenters to join the 263 Hit Radio family. If you've got skills on the decks and a passion for Zimbabwean music, we want to hear from you!</p>
-                <ul>
-                    <li>Must have 2+ years DJ experience</li>
-                    <li>Knowledge of Zimbabwean music genres</li>
-                    <li>Ability to engage listeners</li>
-                    <li>Professional attitude</li>
-                </ul>
-                <a href="contact.html" class="apply-button">Apply Now</a>
-            </div>
-            <div class="join-image">
-                <img src="images/djappli.jpg" alt="DJ Booth">
+    <h2 class="section-title">🎤 Want To Join Our Team?</h2>
+    <div class="join-team">
+        <div class="join-text">
+            <h3>DJ Applications Open!</h3>
+            <p>We're always looking for talented DJs and presenters to join the 263 Hit Radio family. If you've got skills on the decks and a passion for Zimbabwean music, we want to hear from you!</p>
+            <ul>
+                <li>Must have 2+ years DJ experience</li>
+                <li>Knowledge of Zimbabwean music genres</li>
+                <li>Ability to engage listeners</li>
+                <li>Professional attitude</li>
+            </ul>
+            <a href="contact.html" class="apply-button">Apply Now</a>
+        </div>
+        <div class="join-image">
+            <img src="images/djappli.jpg" alt="DJ Booth">
+            <div class="image-support">
+                <i class="fas fa-headphones"></i>
+                <p>Studio Support Available</p>
             </div>
         </div>
     </div>
+</div>
+
+<style>
+    .join-team {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    
+    .join-text {
+        flex: 1;
+        padding-right: 20px;
+    }
+    
+    .join-image {
+        width: 250px;
+        min-width: 250px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid var(--primary);
+        box-shadow: 0 5px 15px rgba(227, 25, 55, 0.2);
+        position: relative;
+    }
+    
+    .join-image img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+    
+    .image-support {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 12px;
+        text-align: center;
+        border-top: 2px solid var(--primary);
+    }
+    
+    .image-support i {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    
+    .image-support p {
+        color: white;
+        margin: 0;
+        font-size: 0.9rem;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .apply-button {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        padding: 10px 25px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: all 0.3s;
+        border: none;
+        cursor: pointer;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .apply-button:hover {
+        background: var(--accent-light);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(227, 25, 55, 0.4);
+    }
+    
+    @media (max-width: 768px) {
+        .join-team {
+            flex-direction: column;
+        }
+        
+        .join-image {
+            width: 100%;
+            min-width: auto;
+        }
+        
+        .join-text {
+            padding-right: 0;
+        }
+    }
+</style>
+
 </section>
         <!-- Contact Page -->
         <section id="contact-page" class="page-section">
