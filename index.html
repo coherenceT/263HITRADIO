@@ -1513,26 +1513,6 @@
                     <button id="listenBtn">
                         <i class="fas fa-play"></i> LISTEN LIVE NOW
                     </button>
-                    <div class="options-dropdown" id="listenOptions">
-                        <a href="#" class="option-item" data-src="https://altair.streamerr.co/8180/stream">
-                            <i class="fas fa-radio"></i> 263 HIT RADIO Radio
-                        </a>
-                        <a href="#" class="option-item" data-src="https://uk3.internet-radio.com/proxy/263hitradio?mp=/stream">
-                            <i class="fas fa-globe-europe"></i> Radio UK
-                        </a>
-                        <a href="#" class="option-item" data-src="http://stream.liveradio.ie/263hitradio">
-                            <i class="fas fa-music"></i> LiveRadio.ie
-                        </a>
-                        <a href="#" class="option-item" data-src="http://onestopradio.co.za:8000/stream">
-                            <i class="fas fa-headphones"></i> TheOneStopRadio
-                        </a>
-                        <a href="#" class="option-item" data-src="http://stream.263hitradio.com:8000/stream">
-                            <i class="fas fa-satellite"></i> 263hitradio.com
-                        </a>
-                        <a href="#" class="option-item" data-src="https://stream.263hitradio.com:8443/stream">
-                            <i class="fas fa-wifi"></i> Radioline (SSL)
-                        </a>
-                    </div>
                 </div>
                 <div class="share-container">
                     <button class="share-btn" id="shareBtn">
@@ -2622,70 +2602,6 @@ Click www.263hitradio.com and let the love flow"</p>
         </div>
     </div>
 
-    <div class="glass-card">
-        <h2 class="section-title">📡 Alternative Streams</h2>
-        <div class="stream-grid">
-            <!-- UK Stream -->
-            <div class="stream-card">
-                <div class="stream-icon">
-                    <i class="fas fa-flag-uk"></i>
-                </div>
-                <h3>UK Mirror</h3>
-                <p>Optimized for European listeners</p>
-                <a href="https://uk3.internet-radio.com/proxy/263hitradio?mp=/" class="stream-button" target="_blank">
-                    <i class="fas fa-play"></i> Connect
-                </a>
-            </div>
-            
-            <!-- Ireland Stream -->
-            <div class="stream-card">
-                <div class="stream-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <h3>Ireland Mirror</h3>
-                <p>LiveRadio.ie hosting</p>
-                <a href="http://stream.liveradio.ie/263hitradio" class="stream-button" target="_blank">
-                    <i class="fas fa-play"></i> Connect
-                </a>
-            </div>
-            
-            <!-- SSL Stream -->
-            <div class="stream-card">
-                <div class="stream-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <h3>Secure Stream</h3>
-                <p>Encrypted HTTPS connection</p>
-                <a href="https://stream.263hitradio.com:8443" class="stream-button" target="_blank">
-                    <i class="fas fa-play"></i> Secure Listen
-                </a>
-            </div>
-            
-            <!-- Zim Stream -->
-            <div class="stream-card">
-                <div class="stream-icon">
-                    <i class="fas fa-headphones"></i>
-                </div>
-                <h3>Zimbabwe Stream</h3>
-                <p>Local Zimbabwe hosting</p>
-                <a href="https://altair.streamerr.co/public/263hitradio" class="stream-button" target="_blank">
-                    <i class="fas fa-play"></i> Connect
-                </a>
-            </div>
-            
-            <!-- South Africa Mirror -->
-            <div class="stream-card">
-                <div class="stream-icon">
-                    <i class="fas fa-headphones"></i>
-                </div>
-                <h3>ZA Mirror</h3>
-                <p>South African hosted</p>
-                <a href="http://onestopradio.co.za:8000" class="stream-button" target="_blank">
-                    <i class="fas fa-play"></i> Connect
-                </a>
-            </div>
-        </div>
-    </div>
 
     <div class="glass-card">
         <h2 class="section-title">📻 Radio Directories</h2>
@@ -2806,7 +2722,7 @@ Click www.263hitradio.com and let the love flow"</p>
                 <li><strong>Connection issues?</strong> Check our <a href="#">Network Status</a></li>
                 <li><strong>Mobile problems?</strong> Use our apps for better stability</li>
             </ul>
-            <p>Still having issues? <a href="contact.html">Contact our support team</a></p>
+            <a href="#" class="cta" onclick="navigateToPage('contact'); return false;">View Profiles</a>
         </div>
         <div class="help-image">
             <img src="images/support.jpg" alt="Music support illustration">
@@ -3395,7 +3311,7 @@ Click www.263hitradio.com and let the love flow"</p>
                 <li>Ability to engage listeners</li>
                 <li>Professional attitude</li>
             </ul>
-            <a href="contact.html" class="apply-button">Apply Now</a>
+        <a href="#" class="cta" onclick="navigateToPage('contact'); return false;">View Profiles</a>
         </div>
         <div class="join-image">
             <img src="images/djappli.jpg" alt="DJ Booth">
@@ -3690,21 +3606,19 @@ Click www.263hitradio.com and let the love flow"</p>
         }
 
         // Toggle play/pause
-        function togglePlay() {
-            if (player.paused) {
-                player.play().then(() => {
-                    updatePlayerUI(true);
-                    showNotification();
-                }).catch(e => {
-                    console.error("Playback failed:", e);
-                    alert("Playback failed. Please click the play button again to start.");
-                });
-            } else {
-                player.pause();
-                updatePlayerUI(false);
-            }
-        }
-
+function togglePlay() {
+    if (player.paused) {
+        player.play().then(() => {
+            updatePlayerUI(true);
+        }).catch(e => {
+            console.error("Playback failed:", e);
+            alert("Playback failed. Please click the play button again to start.");
+        });
+    } else {
+        player.pause();
+        updatePlayerUI(false);
+    }
+}
         // Show notification that music continues playing
         function showNotification() {
             playerNotification.style.display = "block";
