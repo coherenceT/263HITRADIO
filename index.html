@@ -109,27 +109,27 @@
             filter: drop-shadow(0 0 10px rgba(255, 0, 38, 0.7));
             animation: pulse 3s infinite;
         }
-        .dj-image {
-            width: 140px;
-            height: 140px;
-            background: linear-gradient(145deg, var(--accent-dark), var(--primary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 25px rgba(255, 0, 38, 0.8);
-            border: 3px solid var(--secondary);
-            overflow: hidden;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .dj-image img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-        }
+.dj-image {
+    width: 140px;
+    height: 175px; /* Adjusted for 4:5 aspect ratio */
+    background: linear-gradient(145deg, var(--accent-dark), var(--primary));
+    border-radius: 12px; /* Reduced from 50% to make rectangular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(255, 0, 38, 0.8);
+    border: 3px solid var(--secondary);
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+}
+
+.dj-image img {
+    width: 134px; /* Slightly smaller than container */
+    height: 169px; /* Maintains 4:5 aspect ratio */
+    border-radius: 8px; /* Slightly rounded corners */
+    object-fit: cover;
+    border: 3px solid var(--primary);
+}
 
         .radio-info {
             text-align: center;
@@ -1093,6 +1093,108 @@
     padding: 10px;
     border-radius: 20%;
 }
+.site-footer {
+        background: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 50px 0 0;
+        border-top: 3px solid var(--primary);
+        position: relative;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 40px;
+    }
+    
+    .social-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(227, 25, 55, 0.2);
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: 1px solid var(--primary);
+    }
+    
+    .social-icon:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(227, 25, 55, 0.4);
+    }
+    
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+        color: var(--primary);
+    }
+    
+    .footer-contact p {
+        color: #ddd;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .footer-contact i {
+        color: var(--primary);
+        width: 20px;
+        text-align: center;
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border-top: 1px solid var(--primary);
+    }
+    
+    .footer-bottom p {
+        margin: 0;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .footer-social h4,
+        .footer-links h4,
+        .footer-contact h4 {
+            margin-bottom: 15px;
+        }
+    }
     </style>
 </head>
 
@@ -1257,9 +1359,6 @@
             <a href="#" class="nav-link" data-page="contact">Contact</a>
         </nav>
     </div>
-
-    <!-- Player notification -->
-    <div class="player-notification" id="playerNotification">Music continues playing while you browse!</div>
 <!-- About Us Page -->
 <section id="about-page" class="page-section">
     <div class="glass-card">
@@ -3187,15 +3286,83 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             </script>
 
-    <footer>
-        <p>&copy; 2025 263 HIT RADIO Radio. All rights reserved.</p>
+  <footer>
+    <div class="footer-content">
+        <p class="copyright">&copy; 2025 263 HiT RADIO. All rights reserved.</p>
         <div class="socials">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-    </footer>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        border-top: 3px solid var(--primary);
+        font-family: 'Orbitron', sans-serif;
+        backdrop-filter: blur(5px);
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .copyright {
+        margin: 0;
+        color: #ddd;
+        font-size: 0.9rem;
+    }
+
+    .socials {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .socials a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(227, 25, 55, 0.2);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: 1px solid var(--primary);
+        text-decoration: none;
+    }
+
+    .socials a:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(227, 25, 55, 0.4);
+    }
+
+    @media (max-width: 600px) {
+        .socials {
+            gap: 15px;
+        }
+        
+        .socials a {
+            width: 36px;
+            height: 36px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
 
     <script>
         // DOM elements
