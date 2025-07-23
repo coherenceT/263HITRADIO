@@ -1195,6 +1195,248 @@
             margin-bottom: 15px;
         }
     }
+      .contact-section {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 40px;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .contact-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .contact-card {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        padding: 30px 25px;
+        text-align: center;
+        border: 1px solid rgba(227, 25, 55, 0.3);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(227, 25, 55, 0.3);
+        border-color: var(--primary);
+    }
+    
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.8rem;
+    }
+    
+    .contact-icon.whatsapp {
+        background: rgba(37, 211, 102, 0.1);
+        color: #25D366;
+        border: 2px solid #25D366;
+    }
+    
+    .contact-icon.chat {
+        background: rgba(227, 25, 55, 0.1);
+        color: var(--primary);
+        border: 2px solid var(--primary);
+    }
+    
+    .contact-icon.email {
+        background: rgba(255, 193, 7, 0.1);
+        color: #FFC107;
+        border: 2px solid #FFC107;
+    }
+    
+    .contact-card h3 {
+        color: white;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .contact-card p {
+        color: #ddd;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+    
+    .contact-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 1px;
+    }
+    
+    .whatsapp-btn {
+        background: #25D366;
+        color: white;
+        border: 2px solid #25D366;
+    }
+    
+    .chat-btn {
+        background: var(--primary);
+        color: white;
+        border: 2px solid var(--primary);
+    }
+    
+    .email-btn {
+        background: #FFC107;
+        color: #222;
+        border: 2px solid #FFC107;
+    }
+    
+    .contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .contact-cards {
+            grid-template-columns: 1fr;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+    }
+    .contact-section {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 40px;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .contact-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .contact-card {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        padding: 30px 25px;
+        text-align: center;
+        border: 1px solid rgba(227, 25, 55, 0.3);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(227, 25, 55, 0.3);
+        border-color: var(--primary);
+    }
+    
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.8rem;
+    }
+    
+    .contact-icon.whatsapp {
+        background: rgba(37, 211, 102, 0.1);
+        color: #25D366;
+        border: 2px solid #25D366;
+    }
+    
+    .contact-icon.chat {
+        background: rgba(227, 25, 55, 0.1);
+        color: var(--primary);
+        border: 2px solid var(--primary);
+    }
+    
+    .contact-icon.email {
+        background: rgba(255, 193, 7, 0.1);
+        color: #FFC107;
+        border: 2px solid #FFC107;
+    }
+    
+    .contact-card h3 {
+        color: white;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        font-family: 'Orbitron', sans-serif;
+    }
+    
+    .contact-card p {
+        color: #ddd;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+    
+    .contact-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 1px;
+    }
+    
+    .whatsapp-btn {
+        background: #25D366;
+        color: white;
+        border: 2px solid #25D366;
+    }
+    
+    .chat-btn {
+        background: var(--primary);
+        color: white;
+        border: 2px solid var(--primary);
+    }
+    
+    .email-btn {
+        background: #FFC107;
+        color: #222;
+        border: 2px solid #FFC107;
+    }
+    
+    .contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .contact-cards {
+            grid-template-columns: 1fr;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+    }
     </style>
 </head>
 
@@ -1205,7 +1447,7 @@
             <header id="live-header">
                 <div class="header-container">
                     <div class="logo-container">
-                        <img src="images/logo1.jpg" alt="263 HIT RADIO Radio Logo">
+                        <img src="images/dj6.jpg" alt="263 HIT RADIO Radio Logo">
                     </div>
 
                     <div class="radio-info">
@@ -1259,7 +1501,7 @@
 
                     <div class="dj-player-section">
                         <div class="dj-image">
-                            <img id="djMainImage" src="images/dj1.jpg" alt="Current DJ">
+                            <img id="djMainImage" src="images/dj6.jpg" alt="Current DJ">
                         </div>
                         <div class="dj-name" id="djName">DJ Jamza</div>
                         <div class="player-controls">
@@ -1617,7 +1859,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (1).jpeg" alt="Fan 1">
                     <div class="fan-info">
-                        <h3>Sarah J.</h3>
+                        <h3>Batsi Mahara</h3>
                         <p>"263 Hit Radio keeps me going through my workday!"</p>
                     </div>
                 </div>
@@ -2274,11 +2516,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 <!-- Stream Alternatives Page -->
 <section id="stream-page" class="page-section">
-    <div class="glass-card">
+        <div class="glass-card">
         <h2 class="section-title">🔊 Listen to 263 Hit Radio</h2>
-      <div class="stream-hero">
-<img src="images/streaming.jpg">
-    <div class="hero-overlay">
+        <div class="stream-hero">
+            <img src="images/streaming.jpg" alt="Streaming Options">
+            <div class="hero-overlay">
                 <h1>Multiple Ways To Tune In</h1>
                 <p>Choose your preferred streaming method below</p>
             </div>
@@ -2352,17 +2594,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fas fa-play"></i> Secure Listen
                 </a>
             </div>
-            <!-- SSL zim stream -->
+            
+            <!-- Zim Stream -->
             <div class="stream-card">
-    <div class="stream-icon">
-        <i class="fas fa-headphones"></i>
-    </div>
-    <h3>263 Hit Radio</h3>
-    <p>Zimbabwean hosted</p>
-    <a href="https://altair.streamerr.co/public/263hitradio" class="stream-button" target="_blank">
-        <i class="fas fa-play"></i> Connect
-    </a>
-</div>
+                <div class="stream-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3>Zimbabwe Stream</h3>
+                <p>Local Zimbabwe hosting</p>
+                <a href="https://altair.streamerr.co/public/263hitradio" class="stream-button" target="_blank">
+                    <i class="fas fa-play"></i> Connect
+                </a>
+            </div>
+            
             <!-- South Africa Mirror -->
             <div class="stream-card">
                 <div class="stream-icon">
@@ -2372,6 +2616,95 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>South African hosted</p>
                 <a href="http://onestopradio.co.za:8000" class="stream-button" target="_blank">
                     <i class="fas fa-play"></i> Connect
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h2 class="section-title">📻 Radio Directories</h2>
+        <div class="stream-grid">
+            <!-- OneStopRadio -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <h3>TheOneStopRadio</h3>
+                <p>Featured on popular radio directory</p>
+                <a href="https://theonestopradio.com/radio/zw-263-hit-radio" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
+                </a>
+            </div>
+            
+            <!-- Radio-UK -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-flag-uk"></i>
+                </div>
+                <h3>Radio-UK</h3>
+                <p>UK radio directory listing</p>
+                <a href="https://www.radio-uk.co.uk/263-hit-radio" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
+                </a>
+            </div>
+            
+            <!-- Radioline -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3>Radioline</h3>
+                <p>International radio platform</p>
+                <a href="https://www.radioline.co/en/radios/263_hit_radio" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
+                </a>
+            </div>
+            
+            <!-- LiveOnlineRadio -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>LiveOnlineRadio</h3>
+                <p>Global radio directory</p>
+                <a href="https://liveonlineradio.net/es/263-hit-radio" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
+                </a>
+            </div>
+            
+            <!-- LiveRadio.ie -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>LiveRadio.ie</h3>
+                <p>Irish radio directory</p>
+                <a href="https://www.liveradio.ie/stations/263-hit-radio" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
+                </a>
+            </div>
+            
+            <!-- OnlineRadioBox -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-radio"></i>
+                </div>
+                <h3>OnlineRadioBox</h3>
+                <p>Popular streaming platform</p>
+                <a href="https://onlineradiobox.com/uk/263hit/" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
+                </a>
+            </div>
+            
+            <!-- RadioSpinner -->
+            <div class="stream-card">
+                <div class="stream-icon">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <h3>RadioSpinner</h3>
+                <p>Global radio discovery</p>
+                <a href="https://radiospinner.com/gb/263-hit-radio-49663/" class="stream-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Visit
                 </a>
             </div>
         </div>
@@ -2873,8 +3206,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 <!-- Meet The DJs Page -->
 <section id="djs-page" class="page-section">
-
-
     <div class="glass-card">
         <h2 class="section-title">🌟 Prime Time Crew</h2>
         <div class="dj-grid">
@@ -2882,8 +3213,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="dj-card">
                 <div class="dj-image-container">
                     <img src="images/dj1.jpg" alt="DJ Jamza" class="dj-image">
-                    <div class="dj-social">
-                    </div>
                 </div>
                 <div class="dj-info">
                     <h3>DJ Jamza</h3>
@@ -2892,7 +3221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <p class="dj-bio">The king of Zimdancehall with 10+ years experience. Known for his explosive mixes and exclusive artist interviews.</p>
                     <div class="show-name">
-                        <i class="fas fa-microphone"></i> "Jamza's Dancehall Explosion"
+                        <i class="fas fa-microphone"></i> "Massive Mondays Mixed Bag Music"
                     </div>
                 </div>
             </div>
@@ -2901,17 +3230,15 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="dj-card">
                 <div class="dj-image-container">
                     <img src="images/dj2.jpg" alt="DJ Bamdiki Munya wekwaThela" class="dj-image">
-                    <div class="dj-social">
-                    </div>
                 </div>
                 <div class="dj-info">
                     <h3>DJ Bamdiki Munya wekwaThela</h3>
                     <div class="dj-schedule">
-                        <i class="fas fa-calendar-day"></i> Wednesday Nights
+                        <i class="fas fa-calendar-day"></i> Tuesday & Friday Nights
                     </div>
                     <p class="dj-bio">The people's DJ specializing in urban grooves and classic Zimbabwean hits from the 90s to today.</p>
                     <div class="show-name">
-                        <i class="fas fa-microphone"></i> "Munya's Urban Grooves"
+                        <i class="fas fa-microphone"></i> "The Weekend Crossover Show & 263 Connection"
                     </div>
                 </div>
             </div>
@@ -2920,17 +3247,15 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="dj-card">
                 <div class="dj-image-container">
                     <img src="images/dj3.jpg" alt="DJ Steve Ka Sithole" class="dj-image">
-                    <div class="dj-social">
-                    </div>
                 </div>
                 <div class="dj-info">
                     <h3>DJ Steve Ka Sithole</h3>
                     <div class="dj-schedule">
-                        <i class="fas fa-calendar-day"></i> Thursday Nights
+                        <i class="fas fa-calendar-day"></i> Wednesday & Thursday Nights
                     </div>
                     <p class="dj-bio">Afrofusion specialist blending contemporary African beats with global sounds.</p>
                     <div class="show-name">
-                        <i class="fas fa-microphone"></i> "Afro Fusion Nights"
+                        <i class="fas fa-microphone"></i> "The Bjams and Nhubu Diaries"
                     </div>
                 </div>
             </div>
@@ -2944,8 +3269,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="dj-card">
                 <div class="dj-image-container">
                     <img src="images/dj4.jpg" alt="DJ Oliver Chigariro" class="dj-image">
-                    <div class="dj-social">
-                    </div>
                 </div>
                 <div class="dj-info">
                     <h3>DJ Oliver Chigariro</h3>
@@ -2954,7 +3277,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <p class="dj-bio">Your gospel and inspirational music specialist, bringing spiritual upliftment to start your week.</p>
                     <div class="show-name">
-                        <i class="fas fa-microphone"></i> "Sunday Morning Worship"
+                        <i class="fas fa-microphone"></i> "Lovers Lounge"
                     </div>
                 </div>
             </div>
@@ -2963,8 +3286,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="dj-card">
                 <div class="dj-image-container">
                     <img src="images/dj5.jpg" alt="DJ Warren" class="dj-image">
-                    <div class="dj-social">
-                    </div>
                 </div>
                 <div class="dj-info">
                     <h3>DJ Warren</h3>
@@ -2973,7 +3294,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <p class="dj-bio">The young gun bringing fresh energy and the latest chart-toppers to your weekend.</p>
                     <div class="show-name">
-                        <i class="fas fa-microphone"></i> "Weekend Turn Up"
+                        <i class="fas fa-microphone"></i> "Sounds on Saturday"
                     </div>
                 </div>
             </div>
@@ -2982,9 +3303,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="dj-card">
                 <div class="dj-image-container">
                     <img src="images/dj6.jpg" alt="Auto DJ" class="dj-image">
-                    <div class="dj-social">
-                        <a href="#"><i class="fas fa-robot"></i></a>
-                    </div>
                 </div>
                 <div class="dj-info">
                     <h3>Auto DJ</h3>
@@ -3019,193 +3337,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
-
-    <style>
-        /* DJ Hero Section */
-        .djs-hero {
-            position: relative;
-            height: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        .djs-hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 30px 20px;
-            color: white;
-        }
-        
-        .hero-overlay h1 {
-            font-size: 2.5rem;
-            margin: 0 0 10px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero-overlay p {
-            margin: 0;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        /* DJ Grid Layout */
-        .dj-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .dj-card {
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s;
-            border: 1px solid rgba(227,25,55,0.2);
-        }
-        
-        .dj-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(227,25,55,0.2);
-            border-color: var(--primary);
-        }
-        
-        .dj-image-container {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .dj-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .dj-card:hover .dj-image {
-            transform: scale(1.05);
-        }
-        
-        
-        .dj-info {
-            padding: 20px;
-        }
-        
-        .dj-info h3 {
-            margin: 0 0 10px 0;
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
-        
-        .dj-schedule {
-            color: #ddd;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .dj-bio {
-            color: #ccc;
-            margin: 0 0 15px 0;
-            line-height: 1.5;
-        }
-        
-        .show-name {
-            color: #fff;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-top: 10px;
-            border-top: 1px dashed rgba(255,255,255,0.2);
-        }
-        
-        /* Join Team Section */
-        .join-team {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .join-text {
-            flex: 1;
-        }
-        
-        .join-text h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-top: 0;
-        }
-        
-        .join-text ul {
-            padding-left: 20px;
-        }
-        
-        .join-text li {
-            margin-bottom: 10px;
-        }
-        
-        .apply-button {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: all 0.3s;
-        }
-        
-        .apply-button:hover {
-            background: #d81b3a;
-            transform: scale(1.05);
-        }
-        
-        .join-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            max-height: 350px;
-        }
-        
-        .join-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        @media (max-width: 768px) {
-            .dj-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .join-team {
-                flex-direction: column;
-            }
-            
-            .join-image {
-                max-height: 250px;
-            }
-            
-            .hero-overlay h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
 </section>
         <!-- Contact Page -->
         <section id="contact-page" class="page-section">
