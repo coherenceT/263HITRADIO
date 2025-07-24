@@ -1490,6 +1490,172 @@
             font-size: 1.8rem;
         }
     }
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+    }
+
+    .live-banner {
+        background: linear-gradient(90deg, var(--primary), #d81b3a);
+        color: white;
+        text-align: center;
+        padding: 10px 5px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .logo-container {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .logo-container img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+    }
+
+    .radio-info {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .station-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin-bottom: 5px;
+    }
+
+    .now-playing {
+        font-size: 0.9rem;
+        color: #ddd;
+        margin-bottom: 10px;
+    }
+
+    .mobile-controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .mobile-btn {
+        padding: 10px 15px;
+        border-radius: 20px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        font-size: 0.9rem;
+        min-width: 80px;
+    }
+
+    .dj-player-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .dj-image img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+    }
+
+    .player-controls {
+        width: 100%;
+        max-width: 200px;
+        margin-top: 10px;
+    }
+
+    .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .volume-control input {
+        width: 100%;
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 5px;
+        background: rgba(0, 0, 0, 0.9);
+        border-top: 1px solid var(--primary);
+    }
+
+    .mobile-nav .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+        font-size: 0.7rem;
+        padding: 5px;
+        min-width: 50px;
+    }
+
+    .mobile-nav .nav-link i {
+        font-size: 1.2rem;
+        margin-bottom: 3px;
+    }
+
+    .mobile-nav .nav-link.active {
+        color: var(--primary);
+    }
+
+    /* Desktop styles - will override mobile styles on larger screens */
+    @media (min-width: 768px) {
+        .header-container {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            margin-bottom: 0;
+            flex: 0 0 100px;
+        }
+
+        .radio-info {
+            text-align: left;
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .mobile-controls {
+            display: none; /* Hide mobile buttons on desktop */
+        }
+
+        .dj-player-section {
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Show regular navigation on desktop */
+        .mobile-nav {
+            display: none;
+        }
+    }
     </style>
 </head>
 
@@ -1996,7 +2162,7 @@ Click www.263hitradio.com and let the love flow"</p>
                 <div class="fan-card">
                     <img src="fan-photos/fan1 (11).jpeg" alt="Fan 11">
                     <div class="fan-info">
-                        <h3>Lasty Jmau</h3>
+                        <h3>Lasty Jamu</h3>
                         <p>"263 Hit Radio ndi mawu atsopano komanso osangalatsa pa nkhani ya zosangalatsa, omwe amanyadira kuyimira chikhalidwe cha a Zimbabwe, nyimbo komanso luso. Ndi mphamvu yake yosangalatsa, nyimbo zosiyanasiyana komanso kulumikizana ndi anthu, imabweretsa omvera pamodzi kudzera mu mphamvu ya nyimbo zabwino komanso zokambirana zothandiza. Imeneyi si wailesi yokha — ndi kayendedwe komwe kumalemekeza luso, kulimbikitsa achinyamata, komanso kusunga mtima wa nyimbo za ku Zim kuti uzapitirire. Pitirizani kukwera, 263 Hit Radio! 🇿🇼🎶🔥"</p>
                     </div>
                 </div>
@@ -2010,7 +2176,7 @@ Click www.263hitradio.com and let the love flow"</p>
                     </div>
                 </div>
             </div>
-        </section>
+       
 
         <style>
             .fans-section {
@@ -2130,7 +2296,7 @@ Click www.263hitradio.com and let the love flow"</p>
                 </tbody>
             </table>
         </div>
-        
+         </section>
         <!-- WhatsApp Community -->
         <section class="glass-card">
             <h2 class="section-title">💬 Join Our WhatsApp Community</h2>
@@ -2974,9 +3140,8 @@ Click www.263hitradio.com and let the love flow"</p>
     </style>
 </section>
 
-
-        <!-- Fanbase Page -->
-        <section id="fanbase-page" class="page-section">
+    <!-- Fanbase Page -->
+             <section id="fanbase-page" class="page-section">
     <div class="fanbase-section">
         <h2 class="section-title">🎉 Meet Our Fanbase</h2>
         <p>Our amazing community of music lovers from around the world!</p>
@@ -3049,8 +3214,55 @@ Click www.263hitradio.com and let the love flow"</p>
         </div>
     </div>
 </div>
-
-        <style>
+ 
+<div class="submit-photo" id="submitPhoto">
+            <h3><i class="fas fa-camera"></i> Submit Your Photo</h3>
+            <p>Click here to share your photos with the One Love community</p>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    <div class="join-fanbase-section">
+        <h3>🤝 Want to Join Our Fanbase?</h3>
+        <p>Become part of our vibrant community and stay updated with the latest hits and events.</p>
+        <a href="https://chat.whatsapp.com/KnwSpDRRsRG3JqqCPfanB1" class="join-button" target="_blank" rel="noopener">
+            Join the Fanbase
+        </a>
+        </div>
+   </div>
+      </div>
+      </div>
+      
+        <div class="fanbase-benefits">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎵</div>
+                <h3>Exclusive Content</h3>
+                <p>Get access to behind-the-scenes footage, unreleased tracks, and artist interviews.</p>
+            </div>
+        
+            <div class="benefit-card">
+                <div class="benefit-icon">🎟️</div>
+                <h3>Early Ticket Access</h3>
+                <p>Purchase tickets before they go on sale to the general public.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <h3>Special Giveaways</h3>
+                <p>Enter exclusive contests to win merchandise, concert tickets, and more.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <h3>Community Events</h3>
+                <p>Participate in fan meetups, virtual parties, and exclusive listening sessions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <style>
             .fan-gallery {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -3111,47 +3323,11 @@ Click www.263hitradio.com and let the love flow"</p>
                 }
             }
         </style>
-        
-        <div class="submit-photo" id="submitPhoto">
-            <h3><i class="fas fa-camera"></i> Submit Your Photo</h3>
-            <p>Click here to share your photos with the One Love community</p>
-        </div>
-    </div>
-    
-    <div class="join-fanbase-section">
-        <h3>🤝 Want to Join Our Fanbase?</h3>
-        <p>Become part of our vibrant community and stay updated with the latest hits and events.</p>
-        <a href="https://chat.whatsapp.com/KnwSpDRRsRG3JqqCPfanB1" class="join-button" target="_blank" rel="noopener">
-            Join the Fanbase
-        </a>
 
-        <div class="fanbase-benefits">
-            <div class="benefit-card">
-                <div class="benefit-icon">🎵</div>
-                <h3>Exclusive Content</h3>
-                <p>Get access to behind-the-scenes footage, unreleased tracks, and artist interviews.</p>
-            </div>
-        
-            <div class="benefit-card">
-                <div class="benefit-icon">🎟️</div>
-                <h3>Early Ticket Access</h3>
-                <p>Purchase tickets before they go on sale to the general public.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">🎁</div>
-                <h3>Special Giveaways</h3>
-                <p>Enter exclusive contests to win merchandise, concert tickets, and more.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">🤝</div>
-                <h3>Community Events</h3>
-                <p>Participate in fan meetups, virtual parties, and exclusive listening sessions.</p>
-            </div>
-        </div>
-    </div>
+
 </section>
+
+
 <!-- Meet The DJs Page -->
 <section id="djs-page" class="page-section">
     <div class="glass-card">
@@ -3219,11 +3395,11 @@ Click www.263hitradio.com and let the love flow"</p>
                     <img src="images/dj4.jpg" alt="DJ Oliver Chigariro" class="dj-image">
                 </div>
                 <div class="dj-info">
-                    <h3>DJ Oliver Chigariro</h3>
+                    <h3>Dr. Oliver Chigariro</h3>
                     <div class="dj-schedule">
                         <i class="fas fa-calendar-day"></i> Sunday Mornings
                     </div>
-                    <p class="dj-bio">Your gospel and inspirational music specialist, bringing spiritual upliftment to start your week.</p>
+                    <p class="dj-bio">Specialist in soulful and inspirational talk & love music. Bringing your comfort, healing and warmth to start your week.</p>
                     <div class="show-name">
                         <i class="fas fa-microphone"></i> "Lovers Lounge"
                     </div>
@@ -3465,6 +3641,7 @@ Click www.263hitradio.com and let the love flow"</p>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
+    </div>
     </div>
 </footer>
 
