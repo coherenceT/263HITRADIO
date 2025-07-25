@@ -159,6 +159,7 @@ window.addEventListener('resize', redirectMobileUsers);
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         
         .social-btn {
@@ -177,6 +178,25 @@ window.addEventListener('resize', redirectMobileUsers);
         .social-btn:hover {
             background: #ff0000;
             transform: scale(1.1);
+        }
+        
+        .desktop-link-btn {
+            background: #000;
+            color: white;
+            border: 1px solid #ff0000;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+            transition: all 0.3s;
+        }
+        
+        .desktop-link-btn:hover {
+            background: #ff0000;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -210,6 +230,10 @@ window.addEventListener('resize', redirectMobileUsers);
             
             <audio id="radioPlayer" src="https://altair.streamerr.co/8180/stream" preload="none"></audio>
         </div>
+        
+        <button class="desktop-link-btn" onclick="copyDesktopLink()">
+            <i class="fas fa-desktop"></i> Copy Desktop Site Link
+        </button>
         
         <div class="social-share">
             <button class="social-btn" onclick="shareOn('facebook')">
@@ -275,8 +299,39 @@ window.addEventListener('resize', redirectMobileUsers);
         
         function copyLink() {
             navigator.clipboard.writeText(window.location.href)
-                .then(() => alert('Link copied to clipboard!'))
+                .then(() => alert('Mobile page link copied to clipboard!'))
                 .catch(err => console.error('Could not copy text: ', err));
+        }
+        
+        // New function to copy desktop link
+        function copyDesktopLink() {
+            // Get current URL and replace mobile-player.html with index.html
+            let desktopUrl = window.location.href;
+            if (desktopUrl.includes('mobile-player.html')) {
+                desktopUrl = desktopUrl.replace('mobile-player.html', 'index.html');
+            } else {
+                // If not on mobile-player.html, just use the domain with index.html
+                const domain = window.location.origin;
+                desktopUrl = domain + '/index.html';
+            }
+            
+            navigator.clipboard.writeText(desktopUrl)
+                .then(() => alert('Desktop site link copied!\n\nPaste this in a desktop browser to view the full site.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = desktopUrl;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        alert('Desktop site link copied!\n\nPaste this in a desktop browser to view the full site.');
+                    } catch (err) {
+                        alert('Could not copy link automatically. Please manually copy this URL:\n\n' + desktopUrl);
+                    }
+                    document.body.removeChild(textArea);
+                });
         }
     </script>
 </body>
