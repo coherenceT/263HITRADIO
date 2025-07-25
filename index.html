@@ -80,44 +80,22 @@
             padding: 20px 0;
         }
 
-        .header-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            position: relative;
-        }
-
-.logo-container {
-    flex: 0 0 200px;
-    text-align: center;
-    z-index: 2;
+.header-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start; /* Changed from center to flex-start */
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 10px;
 }
 
-.logo-container img {
-    width: 140px;       /* Width set to 140px */
-    height: 175px;      /* Height set to 175px */
-    border-radius: 12px; /* Square with slightly rounded corners */
-    object-fit: cover;
-    border: 3px solid var(--primary);
-    background: linear-gradient(145deg, var(--accent-dark), var(--primary));
-    box-shadow: 0 0 25px rgba(255, 0, 38, 0.8);
-    filter: drop-shadow(0 0 10px rgba(255, 0, 38, 0.7));
-    animation: pulse 3s infinite;
-    transform-style: preserve-3d;
-    transition: all 0.3s ease;
-}
-
-
-.dj-image {
+/* Logo Container */
+.logo-container {
+    flex: 0 0 auto;
     width: 140px;
-    height: 175px; /* Adjusted for 4:5 aspect ratio */
+    height: 175px;
     background: linear-gradient(145deg, var(--accent-dark), var(--primary));
-    border-radius: 12px; /* Reduced from 50% to make rectangular */
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,14 +103,50 @@
     border: 3px solid var(--secondary);
     overflow: hidden;
     animation: float 6s ease-in-out infinite;
+    margin-top: -15px; /* Pulls logo up higher */
 }
 
+/* DJ Image Container */
+.dj-image {
+    width: 140px;
+    height: 175px;
+    background: linear-gradient(145deg, var(--accent-dark), var(--primary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(255, 0, 38, 0.8);
+    border: 3px solid var(--secondary);
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+    margin-top: -15px; /* Pulls DJ image up equally */
+}
+
+/* Images inside containers */
+.logo-container img, 
 .dj-image img {
-    width: 134px; /* Slightly smaller than container */
-    height: 169px; /* Maintains 4:5 aspect ratio */
-    border-radius: 8px; /* Slightly rounded corners */
+    width: 134px;
+    height: 169px;
     object-fit: cover;
+    border-radius: 8px;
     border: 3px solid var(--primary);
+}
+
+/* Adjust DJ info section below image */
+.dj-player-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px; /* Tightened spacing */
+    margin-top: -10px; /* Pulls controls up closer */
+}
+
+.dj-name {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -8px; /* Pulls name up */
+    margin-bottom: 3px;
 }
 
         .radio-info {
@@ -171,12 +185,12 @@
     box-shadow: 0 0 10px red;
 }
 
-        #track-title {
-            color: var(--accent-light);
-            font-weight: bold;
-            font-style: italic;
-        }
-
+   #track-title {
+    color: white;  /* Changed to white text */
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7); /* Optional red glow effect */
+}
     #listenBtn {
     background: red; /* Changed to solid red background */
     color: white; /* Changed to white text */
@@ -1664,17 +1678,33 @@
             <p>Your home for great music and positive vibes. Music continues playing as you browse!</p>
         </div>
 
-        <div class="grid">
-            <div class="block">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1170&auto=format&fit=crop"
-                    alt="One Love Top HITS">
-                <div class="block-content">
-                    <h3>One Love Top HITS</h3>
-                    <p>Submit your favourite hits today and hear them on air!</p>
-                    <a href="#" class="cta" onclick="navigateToPage('events'); return false;">Submit Now</a>
-                </div>
+    <div class="grid">
+    <div class="block">
+        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1170&auto=format&fit=crop"
+            alt="One Love Top HITS">
+        <div class="block-content">
+            <h3>263 Hit Radio Top HITS</h3>
+            <p>Submit your favourite hits today and hear them on air!</p>
+            <a href="#" class="cta" id="submitSongBtn">Submit Now</a>
+            
+            <!-- Song Form (initially hidden) -->
+            <div id="songForm" style="display:none; margin-top:15px; padding:15px; background:rgba(0,0,0,0.7); border-radius:10px;">
+                <form onsubmit="event.preventDefault(); submitSong();" style="display:grid; gap:10px;">
+                    <div style="display:grid;">
+                        <label style="color:white; font-weight:bold;">Song Name:</label>
+                        <input type="text" id="songName" required style="padding:8px; border-radius:5px; border:none;">
+                    </div>
+                    <div style="display:grid;">
+                        <label style="color:white; font-weight:bold;">Artist Name:</label>
+                        <input type="text" id="artistName" required style="padding:8px; border-radius:5px; border:none;">
+                    </div>
+                    <button type="submit" style="background:red; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
+                        Send to 263hitradio@gmail.com
+                    </button>
+                </form>
             </div>
-
+        </div>
+    </div>
          <div class="block">
     <div class="event-slideshow">
         <img src="images/dj6.jpg" alt="DJ 6 performing live" class="event-slide active">
@@ -1685,10 +1715,28 @@
         <a href="#" class="cta" onclick="navigateToPage('events'); return false;">Go to Events</a>
     </div>
 </div>
+<script>
+// Song submission functionality
+document.getElementById('submitSongBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    const form = document.getElementById('songForm');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+});
 
-<style>
-
-</style>
+function submitSong() {
+    const songName = document.getElementById('songName').value;
+    const artistName = document.getElementById('artistName').value;
+    
+    const subject = `Song Submission: ${songName}`;
+    const body = `Song Name: ${songName}\nArtist: ${artistName}\n\nI'd like to hear this on 263 HIT RADIO!`;
+    window.location.href = `mailto:263hitradio@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Reset and hide form
+    document.getElementById('songForm').style.display = 'none';
+    document.getElementById('songName').value = '';
+    document.getElementById('artistName').value = '';
+}
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
