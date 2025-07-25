@@ -1477,6 +1477,39 @@
         }
     }
     </style>
+    <script>
+// Ultimate Mobile Redirect Script
+(function() {
+    // Don't redirect if we're already on the mobile page
+    if (window.location.pathname.includes('mobile-player.html')) return;
+    
+    // Enhanced mobile detection (works on all devices including iOS)
+    function isMobileDevice() {
+        return (typeof window.orientation !== "undefined") || 
+               (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile|Opera Mini)/));
+    }
+    
+    // Additional check for tablet devices if needed
+    function isTablet() {
+        return (navigator.userAgent.match(/(iPad|Android|Tablet|Kindle|PlayBook)/i) ||
+               (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+    }
+    
+    // Check screen size too (optional)
+    function isSmallScreen() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Main check - if any mobile condition is true
+    if (isMobileDevice() || isTablet() || isSmallScreen()) {
+        // Prevent redirect loops with sessionStorage
+        if (!sessionStorage.getItem('mobileRedirectAttempted')) {
+            sessionStorage.setItem('mobileRedirectAttempted', 'true');
+            window.location.href = 'mobile-player.html';
+        }
+    }
+})();
+</script>
 </head>
 
 <body>
